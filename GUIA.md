@@ -142,7 +142,7 @@ En *Geany's configurable keybindings* hay 2 sustantivos (*Geany's, keybindings*)
 
 ⚠️ Los criterios de la cátedra solo hablan del participio **delante** del sustantivo. Cuando va **después** (*the temporary file referenced by %f*), la gramática lo considera una forma verbal: equivale a una oración relativa reducida, "the file **that is** referenced" (paráfrasis, no está en el manual). Confirmar con la cátedra.
 
-**Nota:** en la voz pasiva, `analizar.py` a veces clasifica el participio como adjetivo (*may be overridden*). Por la regla de arriba es **verbo**.
+**Nota:** spaCy a veces etiqueta como adjetivo el participio de la voz pasiva (*may be overridden*). `analizar.py` lo corrige a **verbo** cuando va seguido de *by*; sin *by*, puede seguir marcándolo como adjetivo.
 
 #### Formas -ing: tres funciones posibles
 

@@ -123,6 +123,27 @@ def funcion(tok):
     if tag in ("VB", "VBP") and dep in ("pobj", "nsubj"):
         return "sustantivo"
 
+    # decisiones de la cátedra sobre palabras que el modelo etiqueta mal
+    if t == "than":                       # 'more than one': conj. comparativa
+        return "conjunción"
+    if pos == "SCONJ" and dep == "prep":  # 'upon opening', 'except for',
+        return "preposición"              # 'since Geany 0.13'
+    if pos == "ADP" and t.endswith("est"):
+        return "adjetivo"                 # 'the word nearest the cursor'
+    if pos == "ADP" and (
+            (dep == "compound" and modifica_sustantivo(tok))    # 'home directory'
+            or (dep == "conj" and modifica_sustantivo(tok.head))):  # 'up and down arrows'
+        return "adjetivo"
+    nxt = tok.nbor(1) if tok.i + 1 < len(tok.doc) else None
+    prev = tok.nbor(-1) if tok.i > 0 else None
+    if (t == "drop" and nxt is not None and nxt.lower_ == "down") or \
+            (t == "down" and prev is not None and prev.lower_ == "drop"
+             and nxt is not None and nxt.pos_ in ("NOUN", "PROPN")):
+        return "adjetivo"                 # 'drop down box'
+    if pos == "ADJ" and dep == "acomp" and tok.head.lemma_ == "be" \
+            and nxt is not None and nxt.lower_ == "by":
+        return "verbo"                    # pasiva: 'may be overridden by'
+
     if pos in ("NOUN", "ADJ") or (tag in ("VBN", "VBD") and dep == "amod"):
         if imperativo_mal_etiquetado(tok):
             return "verbo"
