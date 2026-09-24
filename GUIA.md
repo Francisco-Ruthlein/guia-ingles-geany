@@ -12,7 +12,7 @@ Guía gratuita para preparar Inglés I (Analista de Sistemas, FCEQyN, UNaM). Tod
 
 1. [Criterios de la cátedra: función, frase nominal y casos trampa](#1-criterios-de-la-cátedra)
 2. [Palabras estructurales: modales, preposiciones, artículos, pronombres y conectores](#2-palabras-estructurales)
-3. Top 40 de sustantivos, adjetivos y verbos *(pendiente)*
+3. [Top 40 de sustantivos, adjetivos y verbos](#3-top-40-de-sustantivos-adjetivos-y-verbos)
 4. Frases nominales resueltas *(pendiente)*
 5. Voz pasiva *(pendiente)*
 6. Afijos *(pendiente)*
@@ -121,7 +121,7 @@ Estas palabras suelen ser preposiciones o adverbios. Pero si están **dentro de 
 
 *nearest* es el superlativo de *near* (*near → nearer → nearest*), así que es **adjetivo**. spaCy la marca como preposición.
 
-La misma oración tiene otra trampa: en *popup menu **click** position*, *click* está delante del núcleo *position*, así que funciona como **adjetivo**. spaCy la marca como verbo.
+La misma oración tiene otra trampa: en *popup menu **click** position*, *click* está delante del núcleo *position*, así que funciona como **adjetivo** (premodificador del núcleo *position*). spaCy la marca como verbo; `analizar.py` la corrige a adjetivo.
 
 #### Posesivo 's: la palabra sigue siendo sustantivo
 
@@ -149,10 +149,12 @@ En *Geany's configurable keybindings* hay 2 sustantivos (*Geany's, keybindings*)
 | Posición | Frase del manual | Función | Traducción |
 | --- | --- | --- | --- |
 | delante del sustantivo | the **corresponding** symbol location | **adjetivo** | la ubicación del símbolo **correspondiente** |
-| después de una preposición | **After selecting** a symbol from the list… | verbo en forma -ing (gerundio) ⚠️ | **Después de seleccionar** un símbolo de la lista… |
-| como sujeto de la oración | **Editing** system files is not necessary… | ⚠️ sustantivo (gerundio) o verbo | **Editar** archivos del sistema no es necesario… |
+| después de una preposición | **After selecting** a symbol from the list… | **sustantivo** (gerundio) ⚠️ | **Después de seleccionar** un símbolo de la lista… |
+| como sujeto de la oración | **Editing** system files is not necessary… | **sustantivo** (gerundio) ⚠️ | **Editar** archivos del sistema no es necesario… |
 
-⚠️ ***Editing system files is not necessary***: *Editing* no modifica a *system files*. Es la acción ("editar") y funciona como sujeto, así que en la gramática tradicional es un **gerundio con función sustantiva**. spaCy la marca como adjetivo (se equivoca). Pasa lo mismo con *Setting it to 0 will disable this feature* y *Running the commands from within Geany has two benefits*. Confirmar con la cátedra si lo cuentan como sustantivo o como verbo.
+⚠️ ***Editing system files is not necessary***: *Editing* no modifica a *system files*. Es la acción ("editar") y funciona como sujeto, así que en la gramática tradicional es un **gerundio con función sustantiva**. Pasa lo mismo con *Setting it to 0 will disable this feature* y *Running the commands from within Geany has two benefits*, y después de una preposición (*by pressing Escape*, *during typing*). En esta guía y en `analizar.py` los clasificamos como **sustantivo (gerundio)**, pero falta confirmar con la cátedra si los cuentan como sustantivo o como verbo.
+
+⚠️ **Formas -ing ambiguas después de una preposición.** En *Highlight color of **folding** symbols* (color de resaltado de los símbolos **de plegado**) y en *The sources in **decreasing** priority are:* (las fuentes, en prioridad **decreciente**, son:), la forma -ing parece modificar al sustantivo que la sigue. En ese caso sería **adjetivo**. `analizar.py` las marca como sustantivo (gerundio) porque no puede distinguirlas de *the recommended way of **generating** tags files* (la forma recomendada **de generar** archivos de etiquetas), donde sí es un gerundio con objeto.
 
 #### *the following*: adjetivo o sustantivo
 
@@ -299,6 +301,7 @@ Las preposiciones van delante de un sustantivo, una frase nominal, un pronombre 
 - **"to" delante de un sustantivo es preposición:** *Go **to** a particular line number.* Delante de un verbo es **to + infinitivo:** ***To** compile Geany yourself, you just need the Make tool, preferably GNU Make.* → **Para** compilar Geany vos mismo, solo necesitás la herramienta Make, preferentemente GNU Make.
 - **after / before / since** son preposiciones delante de un sustantivo (*before the cursor*, *since Geany 0.13*) y conjunciones delante de una oración (*before the command is run*; ver 2.5).
 - **than** no es preposición: es una **conjunción comparativa** (ver 2.5).
+- **Errata del manual:** en *The number of lines buffered so that you can scroll **though** the history.*, *though* es un error por ***through*** ("a través de"). Tal como está escrita, *though* sería una conjunción ("aunque"), pero en esa oración funciona como la preposición *through*: desplazarte **por** el historial. Por eso `analizar.py` la clasifica como preposición.
 - ***nearest*** parece preposición en *the word **nearest** the edit cursor*, pero es un **adjetivo en grado superlativo** (*near → nearer → nearest*): *la palabra más cercana al cursor*.
 - **Partículas de verbos frasales:** en *hold **down***, *set **up*** o *find **out***, la palabra no va delante de ningún sustantivo: es parte del verbo y el script la clasifica como **adverbio**.
 - *down*, *up* y *home* parecen preposiciones o adverbios, pero delante de un sustantivo funcionan como **adjetivo**: *the up and **down** arrows*, *drop **down** box*, *users **home** directory*. Por eso no están en la tabla (ver la sección 1.4).
@@ -483,3 +486,168 @@ Por su función son **adverbios**, no conjunciones.
 > - ***as*** **tiene dos funciones.** Delante de un sustantivo es preposición (*shown **as** vertical bars*, "como"). Delante de una oración es conjunción (***as** you should use...*, "ya que").
 > - ***so*** **tiene dos funciones.** Entre dos oraciones es conjunción ("así que"). En *To do **so***, es adverbio ("hacerlo así").
 > - **Nota: las frecuencias de *e.g.* e *i.e.*** son conteos de texto e incluyen la licencia. Las de los adverbios conectores también son conteos de texto, no de función.
+
+---
+
+## 3. Top 40 de sustantivos, adjetivos y verbos
+
+Son las palabras conceptuales más frecuentes del manual, **según la función que cumplen**. Por eso una misma palabra puede aparecer en dos listas: *file* es el sustantivo n.º 1 y, a la vez, el adjetivo n.º 2 (*file templates*, "plantillas **de archivo**").
+
+**Cómo se contaron:**
+
+- Se agrupó por la forma base: *file* y *files* cuentan juntas, igual que *use*, *used* y *uses*.
+- Quedaron afuera los nombres propios (*Geany*, *GTK*), los nombres técnicos (*geany.conf*, *Ctrl*), los gerundios, que tienen ⚠️ (ver 1.4), el verbo *be* (ver *there + be* en 2.4) y *multi* y *auto*, que son prefijos (ver la sección 6).
+- Las frecuencias salen del análisis automático y son aproximadas.
+
+### 3.1 Sustantivos
+
+| # | Sustantivo | Frec. | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- | --- |
+| 1 | **file** (archivo) | 317 | All missing settings will be read from the system **file**. | Todas las opciones que falten se van a leer del **archivo** del sistema. |
+| 2 | **line** (línea) | 117 | The style for coloring the background of the current **line**. | El estilo para colorear el fondo de la **línea** actual. |
+| 3 | **document** (documento) | 112 | Always wrap search around the **document** when finding a match. | Al buscar, volver siempre al principio del **documento** cuando se llega al final. |
+| 4 | **command** (comando) | 107 | By default Compile, Build and Execute are fairly basic **commands**. | Por defecto, Compile, Build y Execute son **comandos** bastante básicos. |
+| 5 | **option** (opción) | 73 | Most users should not need to change these **options**. | La mayoría de los usuarios no debería necesitar cambiar estas **opciones**. |
+| 6 | **path** (ruta) | 72 | Don't use the entire **path** for the header, only the filename. | No usar la **ruta** completa en el encabezado, solo el nombre del archivo. |
+| 7 | **character** (carácter) | 72 | A **character** or string which is used to comment code. | Un **carácter** o cadena que se usa para comentar código. |
+| 8 | **dialog** (diálogo) | 70 | A **dialog** appears to select the wanted color. | Aparece un **diálogo** para seleccionar el color deseado. |
+| 9 | **menu** (menú) | 66 | Using the Load Tags File command in the Tools **menu**. | Usando el comando Load Tags File del **menú** Tools. |
+| 10 | **item** (elemento) | 66 | This **item** reloads the current file with the specified encoding. | Este **elemento** recarga el archivo actual con la codificación indicada. |
+| 11 | **setting** (opción, configuración) | 65 | Project file **settings** are saved when the project is closed. | Las **opciones** del archivo de proyecto se guardan cuando se cierra el proyecto. |
+| 12 | **filetype** (tipo de archivo) | 64 | Such **filetypes** have this setting in their system configuration files. | Esos **tipos de archivo** tienen esta opción en sus archivos de configuración del sistema. |
+| 13 | **section** (sección) | 62 | In this **section** the colors for syntax highlighting are defined. | En esta **sección** se definen los colores del resaltado de sintaxis. |
+| 14 | **tab** (pestaña) | 60 | The Indentation **tab** allows you to override the default Indentation settings. | La **pestaña** Indentation te permite reemplazar las opciones de sangría predeterminadas. |
+| 15 | **text** (texto) | 60 | If there is a selection, only the selected **text** is copied. | Si hay una selección, solo se copia el **texto** seleccionado. |
+| 16 | **list** (lista) | 59 | The third field is the argument **list** for this symbol. | El tercer campo es la **lista** de argumentos de este símbolo. |
+| 17 | **name** (nombre) | 55 | Show only file **names** of open documents in sorted order. | Mostrar solo los **nombres** de archivo de los documentos abiertos, ordenados. |
+| 18 | **argument** (argumento) | 50 | The fourth **argument** defines whether to use the background color. | El cuarto **argumento** define si se usa el color de fondo. |
+| 19 | **directory** (directorio) | 49 | An empty working directory will default to the **directory** of the current document. | Si el directorio de trabajo está vacío, se usa por defecto el **directorio** del documento actual. |
+| 20 | **symbol** (símbolo) | 43 | If no **symbols** begin with the sequence, the autocompletion window is closed. | Si ningún **símbolo** empieza con esa secuencia, la ventana de autocompletado se cierra. |
+| 21 | **preference** (preferencia) | 43 | The position of the tabs can be selected in the interface **preferences**. | La posición de las pestañas se puede elegir en las **preferencias** de la interfaz. |
+| 22 | **value** (valor) | 39 | The second field is the type of the return **value**. | El segundo campo es el tipo del **valor** de retorno. |
+| 23 | **word** (palabra) | 38 | Set this to a command to execute on the current **word**. | Configurá acá un comando para ejecutar sobre la **palabra** actual. |
+| 24 | **color** (color) | 36 | Reload Configuration is also necessary to update syntax highlighting **colors**. | También hace falta Reload Configuration para actualizar los **colores** del resaltado de sintaxis. |
+| 25 | **format** (formato) | 35 | This **format** is compatible with the format historically used by Vi. | Este **formato** es compatible con el que usaba históricamente Vi. |
+| 26 | **space** (espacio) | 35 | By default the indent size is equivalent to 4 **spaces**. | Por defecto, el tamaño de la sangría equivale a 4 **espacios**. |
+| 27 | **filename** (nombre de archivo) | 35 | For custom filetypes , the **filename** for Foo is different: | Para los tipos de archivo personalizados, el **nombre de archivo** de Foo es diferente: |
+| 28 | **default** (valor predeterminado) | 34 | By **default**, file templates are installed for some filetypes. | Por **defecto**, se instalan plantillas de archivo para algunos tipos de archivo. |
+| 29 | **project** (proyecto) | 34 | You can set an optional description for the **project**. | Podés ponerle una descripción opcional al **proyecto**. |
+| 30 | **encoding** (codificación) | 34 | There is a special **encoding** "None" which uses no encoding. | Hay una **codificación** especial, "None", que no usa ninguna codificación. |
+| 31 | **field** (campo) | 34 | To create a new project, fill in the Name **field**. | Para crear un proyecto nuevo, completá el **campo** Name. |
+| 32 | **number** (número, cantidad) | 33 | The **number** of rows to display for the autocompletion window. | La **cantidad** de filas que se muestran en la ventana de autocompletado. |
+| 33 | **window** (ventana) | 32 | The messages are still displayed in the status messages **window**. | Los mensajes se siguen mostrando en la **ventana** de mensajes de estado. |
+| 34 | **style** (estilo) | 32 | The **style** for brace highlighting when a matching brace was found. | El **estilo** para resaltar llaves cuando se encontró la llave que le corresponde. |
+| 35 | **plugin** (complemento) | 31 | This **plugin** provides an option to automatically save documents. | Este **plugin** ofrece una opción para guardar documentos automáticamente. |
+| 36 | **template** (plantilla) | 31 | File type is set appropriately to the used **template**. | El tipo de archivo se configura según la **plantilla** usada. |
+| 37 | **example** (ejemplo) | 30 | For **example**, typing 'clean' in the dialog prompt will run "make clean". | Por **ejemplo**, escribir 'clean' en el diálogo va a ejecutar "make clean". |
+| 38 | **system** (sistema) | 28 | The location of the shell on your **system**. | La ubicación del shell en tu **sistema**. |
+| 39 | **information** (información) | 28 | See the section called Filetype extensions for more **information**. | Mirá la sección llamada Filetype extensions para más **información**. |
+| 40 | **selection** (selección) | 27 | The output of the command will be used to replace the current **selection**. | La salida del comando se va a usar para reemplazar la **selección** actual. |
+
+> **Trampa con *default*:** en *by **default*** ("por defecto") es **sustantivo**, porque va después de una preposición y es el núcleo. En *the **default** settings* ("las opciones predeterminadas") es **adjetivo**. Por eso *default* aparece en las dos listas.
+
+### 3.2 Adjetivos
+
+La columna **Clase de palabra** indica qué es la palabra en el diccionario. Más de la mitad de los adjetivos más frecuentes del manual son **sustantivos en función adjetiva**: van delante del núcleo de una frase nominal (criterio 2 de la cátedra).
+
+| # | Adjetivo | Clase de palabra | Frec. | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- | --- | --- |
+| 1 | **current** (actual) | adjetivo | 88 | Go to a particular line number in the **current** file. | Ir a un número de línea específico en el archivo **actual**. |
+| 2 | **file** | sustantivo | 67 | Java source files will be compiled to class **file** bytecode. | Los archivos fuente de Java se compilan a bytecode de archivos **class**. |
+| 3 | **line** | sustantivo | 58 | Print the **line** numbers on the left of your paper. | Imprimir los números **de línea** a la izquierda del papel. |
+| 4 | **configuration** | sustantivo | 49 | See the Filetype **configuration** section for how to define styles. | Mirá la sección **de configuración** de tipos de archivo para ver cómo definir estilos. |
+| 5 | **first** (primero) | ordinal | 48 | Only the **first** two match groups will be read by Geany. | Geany solo va a leer los dos **primeros** grupos de coincidencia. |
+| 6 | **default** (predeterminado) | sustantivo | 48 | Geany supports the **default** keyboard shortcuts for the Scintilla editing widget. | Geany admite los atajos de teclado **predeterminados** del widget de edición Scintilla. |
+| 7 | **new** (nuevo) | adjetivo | 44 | You cannot add **new** actions which are not listed below. | No podés agregar acciones **nuevas** que no estén en la lista de abajo. |
+| 8 | **menu** | sustantivo | 43 | Keyboard equivalents of **menu** commands are listed in the menus. | Los equivalentes de teclado de los comandos **del menú** están listados en los menús. |
+| 9 | **project** | sustantivo | 37 | Any other **project** filenames will be opened as text files. | Cualquier otro nombre de archivo **de proyecto** se va a abrir como archivo de texto. |
+| 10 | **available** (disponible) | adjetivo | 35 | The following format characters are **available** for the statusbar template: | Los siguientes caracteres de formato están **disponibles** para la plantilla de la barra de estado: |
+| 11 | **tags** | sustantivo | 35 | Currently this includes global **tags** files for these languages: | Actualmente esto incluye archivos **de etiquetas** globales para estos lenguajes: |
+| 12 | **other** (otro) | adjetivo | 33 | If this fails, it tries to load some **other** filenames. | Si esto falla, intenta cargar **otros** nombres de archivo. |
+| 13 | **build** | sustantivo | 31 | The **build** menu is divided into four groups of items each with different behaviors: | El menú **de compilación** está dividido en cuatro grupos de elementos, cada uno con distinto comportamiento: |
+| 14 | **one** (un, uno) ⚠️ | numeral | 31 | For example this can happen when the process creates more than **one** child process. | Por ejemplo, esto puede pasar cuando el proceso crea más de **un** proceso hijo. |
+| 15 | **same** (mismo) | adjetivo | 29 | This runs "make" in the **same** directory as the current file. | Esto ejecuta "make" en el **mismo** directorio que el archivo actual. |
+| 16 | **symbol** | sustantivo | 28 | Do not load **symbol** completion and call tip data. | No cargar los datos de autocompletado **de símbolos** ni de calltips. |
+| 17 | **filetype** | sustantivo | 28 | A **filetype** name to setup syntax highlighting from another filetype. | Un nombre **de tipo de archivo** del cual tomar el resaltado de sintaxis. |
+| 18 | **open** (abierto) | adjetivo | 28 | Replace All In Session does the same for all **open** documents. | Replace All In Session hace lo mismo en todos los documentos **abiertos**. |
+| 19 | **more** (más) | adjetivo comparativo | 27 | For **more** information see the section Keybindings . | Para **más** información, mirá la sección Keybindings. |
+| 20 | **command** | sustantivo | 26 | The execute **command** output is not parsed for errors. | La salida del **comando** execute no se analiza en busca de errores. |
+| 21 | **different** (distinto) | adjetivo | 26 | The Compile command has **different** uses for **different** kinds of files. | El comando Compile tiene **distintos** usos para **distintos** tipos de archivo. |
+| 22 | **second** (segundo) | ordinal | 25 | The **second** argument sets the background color for the drawn rectangle. | El **segundo** argumento define el color de fondo del rectángulo dibujado. |
+| 23 | **following** (siguiente) | forma -ing | 24 | An optional message window which can show the **following** tabs: | Una ventana de mensajes opcional que puede mostrar las **siguientes** pestañas: |
+| 24 | **regular** (regular) | adjetivo | 23 | Searching backwards with **regular** expressions is not supported. | No se admite buscar hacia atrás con expresiones **regulares**. |
+| 25 | **user** | sustantivo | 22 | Any missing subdirectories in the **user** configuration directory will be created when Geany starts. | Los subdirectorios que falten en el directorio de configuración **del usuario** se van a crear cuando arranque Geany. |
+| 26 | **useful** (útil) | adjetivo (*use* + *-ful*) | 21 | This is **useful** to save vertical space. | Esto es **útil** para ahorrar espacio vertical. |
+| 27 | **global** (global) | adjetivo | 21 | You use Geany to generate **global** tags files, as described below. | Se usa Geany para generar archivos de etiquetas **globales**, como se describe más abajo. |
+| 28 | **source** | sustantivo | 20 | This item specifies the command to compile **source** code files. | Este elemento indica el comando para compilar archivos de código **fuente**. |
+| 29 | **system** | sustantivo | 20 | Properties Geany uses are listed in the **system** filetype files. | Las propiedades que usa Geany están listadas en los archivos de tipos de archivo **del sistema**. |
+| 30 | **editor** | sustantivo | 20 | Show a thin vertical line in the **editor** window at the given column position. | Mostrar una línea vertical fina en la ventana **del editor**, en la posición de columna indicada. |
+| 31 | **special** (especial) | adjetivo | 18 | This allows you to use a character x that would otherwise have a **special** meaning. | Esto te permite usar un carácter x que, de otro modo, tendría un significado **especial**. |
+| 32 | **terminal** | sustantivo | 18 | Execute programs in the virtual terminal instead of using the external **terminal** tool. | Ejecutar programas en la terminal virtual en lugar de usar la herramienta **de terminal** externa. |
+| 33 | **search** | sustantivo | 18 | The **search** results are shown in the Messages tab of the Message Window. | Los resultados **de búsqueda** se muestran en la pestaña Messages de la ventana de mensajes. |
+| 34 | **document** | sustantivo | 17 | Remove any whitespace at the end of each **document** line. | Eliminar cualquier espacio en blanco al final de cada línea **del documento**. |
+| 35 | **specific** (específico) | adjetivo | 16 | You can also configure some plugin **specific** options if the plugin provides any. | También podés configurar algunas opciones **específicas** del plugin, si el plugin ofrece alguna. |
+| 36 | **preferences** | sustantivo | 16 | You can adjust the command to which the filename is passed in the **preferences** dialog. | Podés ajustar en el diálogo **de preferencias** el comando al que se le pasa el nombre de archivo. |
+| 37 | **two** (dos) | numeral | 16 | The **two** sections "Default" and "Special" apply to all filetypes. | Las **dos** secciones, "Default" y "Special", se aplican a todos los tipos de archivo. |
+| 38 | **such** (tal, ese tipo de) ⚠️ | adjetivo / determinante | 15 | **Such** filetypes have this setting in their system configuration files. | **Esos** tipos de archivo tienen esta opción en sus archivos de configuración del sistema. |
+| 39 | **configurable** (configurable) | adjetivo (*configure* + *-able*) | 15 | Snippet keybindings may be overridden by Geany's **configurable** keybindings. | Los atajos de los snippets pueden ser reemplazados por los atajos **configurables** de Geany. |
+| 40 | **common** (común) | adjetivo | 14 | Some less **common** commands with no menu equivalent are: | Algunos comandos menos **comunes** sin equivalente en el menú son: |
+
+⚠️ ***one***: de las 31 veces, algunas no son adjetivo sino **pronombre**: en *Matches **one** of the characters in the set* ("coincide con **uno** de los caracteres del conjunto"), *one* va solo, sin sustantivo después. El conteo automático las suma igual.
+
+⚠️ ***such***: delante de un sustantivo modifica al núcleo (función adjetiva), pero muchas gramáticas lo clasifican como **determinante**, igual que *this* o *these*. Consultar con la cátedra.
+
+> **Adjetivos después del verbo:** *available* y *useful* no van delante de un sustantivo sino después de *be* (*are **available***, *is **useful***). Siguen siendo **adjetivos**: describen al sujeto.
+
+### 3.3 Verbos
+
+La columna **Forma** indica cómo aparece el verbo en el ejemplo. En el manual abundan tres formas: el **imperativo** (instrucciones: *See…*, *Open…*), la **voz pasiva** (*is used*, *are saved*) y el **infinitivo** con *to* (*to find*).
+
+| # | Verbo | Frec. | Forma | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- | --- | --- |
+| 1 | **use** (usar) | 274 | pasiva | It is **used** for styling files without a filetype set. | Se **usa** para darles estilo a los archivos que no tienen un tipo de archivo configurado. |
+| 2 | **see** (ver) | 109 | imperativo | **See** the Filetype configuration section for how to define styles. | **Mirá** la sección de configuración de tipos de archivo para ver cómo definir estilos. |
+| 3 | **set** (configurar, establecer) | 97 | participio | If **set** to true it uses any indentation of the line. | Si se **configura** en true, usa la sangría que tenga la línea. |
+| 4 | **show** (mostrar) | 70 | pasiva | These are **shown** in the Symbol list in the Sidebar. | Estos se **muestran** en la lista Symbol de la barra lateral. |
+| 5 | **open** (abrir) | 63 | imperativo | **Open** the Preferences dialog, select the desired action and click on change. | **Abrí** el diálogo Preferences, seleccioná la acción deseada y hacé clic en change. |
+| 6 | **have** (tener) | 56 | presente | Such filetypes **have** this setting in their system configuration files. | Esos tipos de archivo **tienen** esta opción en sus archivos de configuración del sistema. |
+| 7 | **find** (encontrar) | 44 | infinitivo | To **find** all matches, click on the Find All expander. | Para **encontrar** todas las coincidencias, hacé clic en el desplegable Find All. |
+| 8 | **add** (agregar) | 41 | imperativo | Just **add** the indentation of the previous line. | Solo **agregar** la sangría de la línea anterior. |
+| 9 | **save** (guardar) | 39 | pasiva | These settings are **saved** automatically when Geany is shut down. | Estas opciones se **guardan** automáticamente cuando se cierra Geany. |
+| 10 | **define** (definir) | 39 | pasiva | In this section the colors for syntax highlighting are **defined**. | En esta sección se **definen** los colores del resaltado de sintaxis. |
+| 11 | **change** (cambiar) | 38 | imperativo | **Change** the font used for the message window area. | **Cambiar** la fuente que se usa en el área de la ventana de mensajes. |
+| 12 | **want** (querer) | 36 | presente | It is useful when you **want** to change the encoding of the file. | Sirve cuando **querés** cambiar la codificación del archivo. |
+| 13 | **contain** (contener) | 33 | presente | However, the printed document **contains** no syntax highlighting. | Sin embargo, el documento impreso no **tiene** resaltado de sintaxis. |
+| 14 | **create** (crear) | 32 | infinitivo | To **create** a new project, fill in the Name field. | Para **crear** un proyecto nuevo, completá el campo Name. |
+| 15 | **need** (necesitar) | 31 | presente | To find other properties you **need** Geany's source code: | Para encontrar otras propiedades **necesitás** el código fuente de Geany: |
+| 16 | **make** (hacer) | 31 | infinitivo | Use the width 0 to **make** the caret invisible. | Usá el ancho 0 para **hacer** invisible el cursor (caret). |
+| 17 | **select** (seleccionar) | 30 | infinitivo | A dialog appears to **select** the wanted color. | Aparece un diálogo para **seleccionar** el color deseado. |
+| 18 | **load** (cargar) | 30 | imperativo negativo | Do not **load** symbol completion and call tip data. | No **cargar** los datos de autocompletado de símbolos ni de calltips. |
+| 19 | **specify** (especificar, indicar) | 29 | presente | This item **specifies** the command to link the file. | Este elemento **indica** el comando para enlazar el archivo. |
+| 20 | **run** (ejecutar) | 28 | presente | This **runs** "make" in the same directory as the current file. | Esto **ejecuta** "make" en el mismo directorio que el archivo actual. |
+| 21 | **start** (iniciar) | 26 | infinitivo (tras modal) | You can **start** Geany in the following ways: | Podés **iniciar** Geany de las siguientes maneras: |
+| 22 | **allow** (permitir) | 26 | presente | This **allows** dark color schemes to save ink when printing. | Esto **permite** que los esquemas de colores oscuros ahorren tinta al imprimir. |
+| 23 | **match** (coincidir) | 25 | presente | This **matches** the end of a line. | Esto **coincide** con el final de una línea. |
+| 24 | **type** (escribir, tipear) | 24 | imperativo | Click on Add to get a new item and **type** the command. | Hacé clic en Add para obtener un elemento nuevo y **escribí** el comando. |
+| 25 | **work** (funcionar) | 24 | presente | This **works** basically the same as on other platforms: | Esto **funciona** básicamente igual que en otras plataformas: |
+| 26 | **replace** (reemplazar) | 24 | infinitivo | To **replace** several matches, click on the Replace All expander. | Para **reemplazar** varias coincidencias, hacé clic en el desplegable Replace All. |
+| 27 | **read** (leer) | 22 | pasiva | Only the first two match groups will be **read** by Geany. | Geany solo va a **leer** los dos primeros grupos de coincidencia. |
+| 28 | **support** (admitir, soportar) | 21 | pasiva | Stringification, token pasting and recursive macro expansion are also **supported**. | También se **admiten** la stringification, el pegado de tokens y la expansión recursiva de macros. |
+| 29 | **configure** (configurar) | 21 | infinitivo (tras modal) | Projects can only **configure** menu items per filetype. | Los proyectos solo pueden **configurar** elementos del menú por tipo de archivo. |
+| 30 | **enable** (habilitar) | 21 | participio | When **enabled** Geany stops scrolling when at the last line of the document. | Si está **habilitado**, Geany deja de desplazarse al llegar a la última línea del documento. |
+| 31 | **execute** (ejecutar) | 20 | infinitivo | The command to **execute** a script in a terminal. | El comando para **ejecutar** un script en una terminal. |
+| 32 | **insert** (insertar) | 20 | futuro (*will*) | This will **insert** the entity for the character at the current cursor position. | Esto va a **insertar** la entidad del carácter en la posición actual del cursor. |
+| 33 | **include** (incluir) | 19 | presente | Currently this **includes** global tags files for these languages: | Actualmente esto **incluye** archivos de etiquetas globales para estos lenguajes: |
+| 34 | **detect** (detectar) | 19 | pasiva | If a running instance is **detected**, pass filenames to it instead. | Si se **detecta** una instancia en ejecución, pasarle los nombres de archivo a ella. |
+| 35 | **generate** (generar) | 18 | infinitivo (tras modal) | You can either download these files or **generate** your own. | Podés descargar estos archivos o **generar** los tuyos. |
+| 36 | **call** (llamar) | 18 | pasiva | The corresponding keybinding is **called** Complete snippet. | El atajo correspondiente se **llama** Complete snippet. |
+| 37 | **edit** (editar) | 18 | infinitivo (tras modal) | You can also **edit** the default file templates. | También podés **editar** las plantillas de archivo predeterminadas. |
+| 38 | **compile** (compilar) | 17 | pasiva | Java source files will be **compiled** to class file bytecode. | Los archivos fuente de Java se van a **compilar** a bytecode de archivos class. |
+| 39 | **remove** (eliminar) | 17 | imperativo | **Remove** all messages from the status bar. | **Eliminar** todos los mensajes de la barra de estado. |
+| 40 | **click** (hacer clic) | 17 | imperativo | Once you have found the desired character **click** on it and choose "Insert". | Cuando encuentres el carácter deseado, **hacé clic** en él y elegí "Insert". |
+
+> **Trampas con verbos:**
+>
+> - **Muchos verbos del manual también son sustantivos:** *use*, *set*, *type*, *search*, *click*, *list*, *match*. Mirá la función: en *the search results*, *search* es adjetivo; en *Remove all messages*, *Remove* es verbo en imperativo.
+> - **Imperativo en infinitivo:** en las listas de opciones del manual, el imperativo se traduce mejor con infinitivo (*Remove all messages…* → **Eliminar** todos los mensajes…). En las instrucciones al lector, se traduce con el imperativo (*Open the Preferences dialog…* → **Abrí** el diálogo…). Las dos son la misma forma en inglés: **verbo**.
+> - **Pasiva = *be* + participio:** *are saved*, *is used*, *will be read*. El participio es **verbo** y *be* es **auxiliar**. En español suele traducirse con "se" (*se guardan*, *se usa*).

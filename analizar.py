@@ -144,6 +144,25 @@ def funcion(tok):
             and nxt is not None and nxt.lower_ == "by":
         return "verbo"                    # pasiva: 'may be overridden by'
 
+    # gerundio (-ing) como sujeto o después de preposición -> sustantivo:
+    # 'Setting it to 0 will...', 'after selecting', 'during typing'
+    if tag == "VBG" and dep in ("csubj", "csubjpass", "pcomp", "pobj"):
+        return "sustantivo"
+    # 'Editing system files is...': el modelo lo toma como modificador de
+    # 'files', pero el verbo en singular muestra que el sujeto es 'Editing'
+    if (tag == "VBG" and tok.i == tok.sent.start and dep in ("amod", "compound")
+            and tok.head.tag_ == "NNS" and tok.head.dep_ in ("nsubj", "nsubjpass")
+            and tok.head.head.tag_ == "VBZ"):
+        return "sustantivo"
+
+    # verbo base entre dos sustantivos sin sujeto propio al lado:
+    # 'the popup menu click position' -> premodificador del núcleo
+    if (tag in ("VB", "VBP") and prev is not None and nxt is not None
+            and prev.pos_ == "NOUN" and prev.head != tok
+            and nxt.pos_ == "NOUN" and nxt.head == tok and nxt.dep_ == "dobj"
+            and not any(c.dep_ == "det" for c in nxt.children)):
+        return "adjetivo"
+
     if pos in ("NOUN", "ADJ") or (tag in ("VBN", "VBD") and dep == "amod"):
         if imperativo_mal_etiquetado(tok):
             return "verbo"
