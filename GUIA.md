@@ -15,8 +15,8 @@ Guía gratuita para preparar Inglés I (Analista de Sistemas, FCEQyN, UNaM). Tod
 3. [Top 40 de sustantivos, adjetivos y verbos](#3-top-40-de-sustantivos-adjetivos-y-verbos)
 4. [Frases nominales resueltas](#4-frases-nominales-resueltas)
 5. [Voz pasiva](#5-voz-pasiva)
-6. Afijos *(pendiente)*
-7. Preguntas de práctica *(pendiente)*
+6. [Afijos: prefijos y sufijos](#6-afijos-prefijos-y-sufijos)
+7. [Preguntas de práctica](#7-preguntas-de-práctica)
 
 ---
 
@@ -101,7 +101,7 @@ Estas palabras suelen ser preposiciones o adverbios. Pero si están **dentro de 
 | The **up** and **down** arrows will move the selected item. | up, down | **adjetivo** | modifican a *arrows* (núcleo). spaCy marca *down* como preposición. | Las flechas **arriba** y **abajo** mueven el elemento seleccionado. |
 | This opens the file with the encoding specified in the encoding drop **down** box. | encoding, drop, down | **adjetivo** | los tres modifican a *box* (núcleo). spaCy marca *drop* como sustantivo y *down* como preposición. | Esto abre el archivo con la codificación indicada en la lista **desplegable** de codificaciones. |
 | …open files below the users **home** directory… | home | **adjetivo** | modifica a *directory* (núcleo). spaCy lo marca como preposición. | …los archivos abiertos dentro del directorio **personal** de los usuarios… |
-| …open files below the **users** home directory… | users ⚠️ | ¿sustantivo o adjetivo? | Al manual le falta el apóstrofo (*users'* = "de los usuarios"). Si se lee como posesivo, es **sustantivo** (criterio 3). Si se lee como un sustantivo que modifica a otro, es **adjetivo**. Consultar con la cátedra. | …el directorio personal **de los usuarios**… |
+| …open files below the **users** home directory… | users | **adjetivo** | Está delante del núcleo *directory* y lo modifica, igual que *home*. **Nota:** al manual le falta el apóstrofo. Con apóstrofo (*user's* o *users'* = "del usuario", "de los usuarios") sería un posesivo y, por el criterio 3, **sustantivo**. Tal como está escrito, sin apóstrofo, es **adjetivo**. | …el directorio personal **de los usuarios**… |
 
 **Comparalas con los casos en que no hay un sustantivo después:**
 
@@ -337,7 +337,7 @@ Las preposiciones van delante de un sustantivo, una frase nominal, un pronombre 
 
 | Pronombre | Frec. | Ejemplo del manual | Traducción |
 | --- | --- | --- | --- |
-| **one** | 9 | Add a newline at the end of the document if **one** is missing. | Agregar un salto de línea al final del documento si falta (**uno**). |
+| **one** | 16 | Add a newline at the end of the document if **one** is missing. | Agregar un salto de línea al final del documento si falta (**uno**). |
 | **something** | 4 | If their value is **something** other than "true" or "false", "false" is assumed. | Si su valor es **algo** distinto de "true" o "false", se asume "false". |
 | **anything** | 3 | **Anything** after the first 512 bytes will not be recognized. | **Todo lo que** esté después de los primeros 512 bytes no se va a reconocer. |
 | **nothing** | 2 | If **nothing** is selected, by default the current word is used instead. | Si no hay **nada** seleccionado, por defecto se usa la palabra actual. |
@@ -565,7 +565,8 @@ La columna **Clase de palabra** indica qué es la palabra en el diccionario. Má
 | 11 | **tags** | sustantivo | 35 | Currently this includes global **tags** files for these languages: | Actualmente esto incluye archivos **de etiquetas** globales para estos lenguajes: |
 | 12 | **other** (otro) | adjetivo | 33 | If this fails, it tries to load some **other** filenames. | Si esto falla, intenta cargar **otros** nombres de archivo. |
 | 13 | **build** | sustantivo | 31 | The **build** menu is divided into four groups of items each with different behaviors: | El menú **de compilación** está dividido en cuatro grupos de elementos, cada uno con distinto comportamiento: |
-| 14 | **one** (un, uno) ⚠️ | numeral | 31 | For example this can happen when the process creates more than **one** child process. | Por ejemplo, esto puede pasar cuando el proceso crea más de **un** proceso hijo. |
+| 14 | **one** (un) | numeral | 30 | For example this can happen when the process creates more than **one** child process. | Por ejemplo, esto puede pasar cuando el proceso crea más de **un** proceso hijo. |
+| — | **one** (uno) → no es adjetivo | pronombre | 16 | Matches **one** of the characters in the set. | Coincide con **uno** de los caracteres del conjunto. |
 | 15 | **same** (mismo) | adjetivo | 29 | This runs "make" in the **same** directory as the current file. | Esto ejecuta "make" en el **mismo** directorio que el archivo actual. |
 | 16 | **symbol** | sustantivo | 28 | Do not load **symbol** completion and call tip data. | No cargar los datos de autocompletado **de símbolos** ni de calltips. |
 | 17 | **filetype** | sustantivo | 28 | A **filetype** name to setup syntax highlighting from another filetype. | Un nombre **de tipo de archivo** del cual tomar el resaltado de sintaxis. |
@@ -589,13 +590,13 @@ La columna **Clase de palabra** indica qué es la palabra en el diccionario. Má
 | 35 | **specific** (específico) | adjetivo | 16 | You can also configure some plugin **specific** options if the plugin provides any. | También podés configurar algunas opciones **específicas** del plugin, si el plugin ofrece alguna. |
 | 36 | **preferences** | sustantivo | 16 | You can adjust the command to which the filename is passed in the **preferences** dialog. | Podés ajustar en el diálogo **de preferencias** el comando al que se le pasa el nombre de archivo. |
 | 37 | **two** (dos) | numeral | 16 | The **two** sections "Default" and "Special" apply to all filetypes. | Las **dos** secciones, "Default" y "Special", se aplican a todos los tipos de archivo. |
-| 38 | **such** (tal, ese tipo de) ⚠️ | adjetivo / determinante | 15 | **Such** filetypes have this setting in their system configuration files. | **Esos** tipos de archivo tienen esta opción en sus archivos de configuración del sistema. |
+| 38 | **such** (tal, tales) | adjetivo | 15 | **Such** filetypes have this setting in their system configuration files. | **Tales** tipos de archivo tienen esta opción en sus archivos de configuración del sistema. |
 | 39 | **configurable** (configurable) | adjetivo (*configure* + *-able*) | 15 | Snippet keybindings may be overridden by Geany's **configurable** keybindings. | Los atajos de los snippets pueden ser reemplazados por los atajos **configurables** de Geany. |
 | 40 | **common** (común) | adjetivo | 14 | Some less **common** commands with no menu equivalent are: | Algunos comandos menos **comunes** sin equivalente en el menú son: |
 
-⚠️ ***one***: de las 31 veces, algunas no son adjetivo sino **pronombre**: en *Matches **one** of the characters in the set* ("coincide con **uno** de los caracteres del conjunto"), *one* va solo, sin sustantivo después. El conteo automático las suma igual.
+***one*** **tiene dos funciones, que se cuentan por separado:** delante de un sustantivo es **adjetivo numeral** (*one child process*, "**un** proceso hijo"); solo, reemplazando a un sustantivo, es **pronombre** (*one of the characters*, "**uno** de los caracteres"; *the current one*, "el actual"). La fila del pronombre no cuenta para el ranking de adjetivos.
 
-⚠️ ***such***: delante de un sustantivo modifica al núcleo (función adjetiva), pero muchas gramáticas lo clasifican como **determinante**, igual que *this* o *these*. Consultar con la cátedra.
+***such*** **= "tal" / "tales":** delante de un sustantivo lo modifica, así que en esta guía es **adjetivo** (*such filetypes* = **tales** tipos de archivo, "esos tipos de archivo"). En *such as* ("como", para dar ejemplos) forma parte de una expresión de ejemplo (ver 2.5).
 
 > **Adjetivos después del verbo:** *available* y *useful* no van delante de un sustantivo sino después de *be* (*are **available***, *is **useful***). Siguen siendo **adjetivos**: describen al sujeto.
 
@@ -743,11 +744,11 @@ Si la pregunta es "¿cuántos sustantivos hay en la oración?", la respuesta es 
 | 2 | **Middle-click** pastes **the last selected text**. | *Middle-click* es un sustantivo compuesto y funciona como sujeto. ***pastes*** es el **verbo** ("pega"). En *the last selected text*, el núcleo es *text* y los modificadores son *last* y *selected*. | Toma *Middle click pastes* como una frase nominal con núcleo *pastes*: se equivoca con el verbo. | **El clic del medio** pega **el último texto seleccionado**. |
 | 3 | This file defines **some general non-filetype-specific settings**. ⚠️ | Núcleo: *settings*. Modificadores: *general* y ***non-filetype-specific***, que es un solo adjetivo compuesto (prefijo *non-* + *filetype* + *-specific*). | Separa el compuesto y cuenta 4 adjetivos: *general*, *non*, *filetype* y *specific*. | Este archivo define **algunas opciones generales que no son específicas de un tipo de archivo**. |
 | 4 | Whether to replace special keywords after typing Tab into **a pre-defined text snippet**. ⚠️ | Núcleo: *snippet*. Modificadores: ***pre-defined*** (prefijo *pre-* + participio *defined*) y *text*. | Separa *pre* y *defined* y cuenta 3 adjetivos. | Si se reemplazan palabras clave especiales al escribir Tab dentro de **un fragmento de texto predefinido**. |
-| 5 | **The Use escape sequences option** will transform any escaped characters into their UTF-8 equivalent. ⚠️ | Núcleo: *option*. *Use escape sequences* es el **nombre** de la opción (una etiqueta del programa) y, en bloque, funciona como adjetivo. | Marca *Use*, *escape* y *sequences* como 3 adjetivos. | **La opción Use escape sequences** transforma cualquier carácter escapado en su equivalente UTF-8. |
+| 5 | **The Use escape sequences option** will transform any escaped characters into their UTF-8 equivalent. | Núcleo: *option*. *Use escape sequences* es el **nombre** de la opción (una etiqueta del programa) y funciona **en bloque como adjetivo**. | Marca *Use*, *escape* y *sequences* como 3 adjetivos. | **La opción Use escape sequences** transforma cualquier carácter escapado en su equivalente UTF-8. |
 
 ⚠️ **Palabras con guion (4.5.3 y 4.5.4):** no está claro si la cátedra cuenta *non-filetype-specific* o *pre-defined* como **una** palabra o como varias. Si en el examen aparece una frase así, conviene preguntar. En esta guía las tratamos como **una sola palabra** (adjetivo compuesto), y los prefijos *non-* y *pre-* se estudian en la sección 6.
 
-⚠️ **Nombres de opciones y menús (4.5.5):** en frases como *the **Use escape sequences** option* o *the **Enable plugin support** general preference*, el nombre de la opción incluye un verbo en imperativo (*Use*, *Enable*). Por su posición, todo el nombre funciona como modificador del núcleo. Falta confirmar con la cátedra cómo cuentan cada palabra por separado.
+**Nombres de opciones y menús (4.5.5):** en frases como *the **Use escape sequences** option* o *the **Enable plugin support** general preference*, el nombre de la opción empieza con un verbo en imperativo (*Use*, *Enable*). Pero es una **etiqueta del programa**: todo el nombre funciona **en bloque como adjetivo** del núcleo (*option*, *preference*), y sus palabras no se analizan por separado. Pasa lo mismo con nombres de diálogos y comandos como *the **Find** dialog* o *the **Compile** command*. Como estas frases no se pueden contar palabra por palabra, el modo `--quiz` de `analizar.py` no las usa.
 
 ⚠️ **Oración de 4.3.1:** en *What the default symbol list sort order **should be**.*, el script marca *be* como **auxiliar**, pero ahí es el verbo principal. Por eso en 4.3 figura como verbo.
 
@@ -793,9 +794,9 @@ Si hay un modal, se cuenta aparte: en *can be defined*, *can* es **modal**, *be*
 | perfecto: *has been* + participio | 1 | Custom filetypes are not as powerful as built-in filetypes, but support for the following **has been implemented**: | Los tipos de archivo personalizados no son tan potentes como los incorporados, pero **se implementó** soporte para lo siguiente: |
 | infinitivo perfecto: *to have been* + participio | 1 | It has **to have been built** already. | Tiene que **haber sido compilado** antes. |
 | gerundio: *being* + participio | 1 | There is also a command-line option, -p , which prevents plugins **being loaded**. | También hay una opción de línea de comandos, -p, que evita que **se carguen** los plugins. |
-| ⚠️ *get* + participio | 1 | Ensures that newline characters always **get converted** before saving, avoiding mixed line endings in the same file. | Asegura que los saltos de línea **se conviertan** siempre antes de guardar, para evitar finales de línea mezclados en el mismo archivo. |
+| *get* + participio (pasiva informal) | 1 | Ensures that newline characters always **get converted** before saving, avoiding mixed line endings in the same file. | Asegura que los saltos de línea **se conviertan** siempre antes de guardar, para evitar finales de línea mezclados en el mismo archivo. |
 
-⚠️ ***get converted***: la pasiva con *get* es informal y algunas gramáticas no la cuentan como voz pasiva. spaCy la trata como pasiva. Consultar con la cátedra si en el examen cuenta como tal y si *get* es auxiliar o verbo.
+**Nota:** *get converted* es una **pasiva informal**: *get* cumple el mismo papel que *be*, así que es **auxiliar**, y *converted* es **verbo**.
 
 ### 5.3 Pasiva con agente (*by*)
 
@@ -830,9 +831,9 @@ No todo *be* + palabra es voz pasiva. Si la palabra es un **adjetivo** (no un pa
 | The former menu item also shows the project dialog when a project **is open**. | open | **adjetivo** (*open* no es participio: el participio es *opened*) | El elemento de menú anterior también muestra el diálogo del proyecto cuando hay un proyecto **abierto**. |
 | This **is useful** to save vertical space. | useful | **adjetivo** (*use* + *-ful*) | Esto **es útil** para ahorrar espacio vertical. |
 | The following format characters **are available** for the statusbar template: | available | **adjetivo** | Los siguientes caracteres de formato **están disponibles** para la plantilla de la barra de estado: |
-| This only applies to files opened explicitly from the command line, so files from previous sessions or project files **are unaffected**. ⚠️ | unaffected | **adjetivo** ⚠️ | Esto solo se aplica a los archivos abiertos explícitamente desde la línea de comandos, así que los archivos de sesiones anteriores o de proyectos **no se ven afectados**. |
+| This only applies to files opened explicitly from the command line, so files from previous sessions or project files **are unaffected**. | unaffected | **adjetivo** | Esto solo se aplica a los archivos abiertos explícitamente desde la línea de comandos, así que los archivos de sesiones anteriores o de proyectos **no se ven afectados**. |
 
-⚠️ ***are unaffected***: parece pasiva (*un-* + *affected*), pero no existe el verbo "unaffect". Describe un **estado** ("no afectados"), no una acción, así que se clasifica como **adjetivo**. El prefijo *un-* se ve en la sección 6.
+***are unaffected***: parece pasiva (*un-* + *affected*), pero no existe el verbo "unaffect". Describe un **estado** ("no afectados"), no una acción, así que se clasifica como **adjetivo**. El prefijo *un-* + participio se ve en la sección 6.
 
 **Compará con *undone*:** en *These can each be **undone** with the Undo command.* (Cada uno de estos **se puede deshacer** con el comando Undo), *undo* sí es un verbo ("deshacer"), así que *can be undone* **es pasiva** y *undone* es **verbo**.
 
@@ -896,3 +897,512 @@ Estos participios no terminan en *-ed*. Conviene reconocerlos, porque en el exam
 | keybindings | sustantivo | C | núcleo de la frase nominal (agente) |
 
 **Conteo:** 3 sustantivos (*keybindings*, *Geany's*, *keybindings*), 2 adjetivos (*Snippet*, *configurable*), 1 verbo (*overridden*), 1 modal, 1 auxiliar y 1 preposición. En total hay 6 palabras conceptuales (C) y 3 estructurales (E).
+
+---
+
+## 6. Afijos: prefijos y sufijos
+
+Un **afijo** es una partícula que se agrega a una palabra (la **base**) para formar otra:
+
+- El **prefijo** va **adelante** y cambia el **significado**, pero en general no cambia la categoría: *able* (capaz, adjetivo) → ***dis**able* (deshabilitar); *compatible* (adjetivo) → ***in**compatible* (adjetivo).
+- El **sufijo** va **atrás** y en general cambia la **categoría**: *use* (verbo) → *use**ful*** (adjetivo); *easy* (adjetivo) → *eas**ily*** (adverbio).
+
+Todos los ejemplos de esta sección están en el manual, salvo los marcados como *(no está en el manual)*.
+
+### 6.1 Prefijos
+
+#### Prefijos de negación
+
+| Prefijo | Significado | Palabras del manual | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- | --- |
+| **un-** | no; lo contrario | unaffected, unmodified, undefined, untitled, unused, unclosed, unimportant | You can hide **unimportant** code sections and concentrate on the parts you are working on and later you can show hidden sections again. | Podés ocultar las secciones de código **poco importantes** y concentrarte en las partes en las que estás trabajando, y después volver a mostrar las secciones ocultas. |
+| **un-** + verbo | revertir la acción | unload, unfold, uncomment, undo | You can also load and **unload** plugins on the fly using this dialog. | También podés cargar y **descargar** plugins sobre la marcha desde este diálogo. |
+| **dis-** | lo opuesto; quitar | disable, disabled | Setting it to 0 will **disable** this feature. | Ponerlo en 0 **desactiva** esta función. |
+| **in-** | no | incompatible, incomplete, insecure, insensitive, invisible, independent | Use the width 0 to make the caret **invisible**. | Usá el ancho 0 para hacer **invisible** el cursor (caret). |
+| **non-** | no (suele llevar guion) | non-option, non-Windows, non-filetype-specific | This applies only to **non-Windows** systems. | Esto se aplica solo a sistemas **que no son Windows**. |
+| **mis-** | mal, de forma incorrecta | *(no está en el manual)*: misunderstand, misuse | — | *misunderstand* = entender **mal**; *misuse* = usar **mal** |
+| **im-** | no (delante de *b*, *m*, *p*) | *(no está en el manual)*: impossible | — | *impossible* = **im**posible |
+
+#### *un-* + participio: *unaffected*
+
+El prefijo *un-* se puede agregar a un **participio** (*affected*, *modified*, *defined*) y forma un **adjetivo** que niega el estado: "no afectado", "sin modificar", "sin definir".
+
+| Palabra | Formación | Ejemplo del manual | Función | Traducción |
+| --- | --- | --- | --- | --- |
+| **unaffected** | *un-* + *affected* (participio de *affect*) | This only applies to files opened explicitly from the command line, so files from previous sessions or project files are **unaffected**. | adjetivo | Esto solo se aplica a los archivos abiertos explícitamente desde la línea de comandos, así que los archivos de sesiones anteriores o de proyectos **no se ven afectados**. |
+| **unmodified** | *un-* + *modified* | Tag files using the CTags format should be left **unmodified** in the form generated by the ctags command-line tool. | adjetivo | Los archivos de etiquetas en formato CTags deben dejarse **sin modificar**, tal como los genera la herramienta de línea de comandos ctags. |
+| **undefined** | *un-* + *defined* | If **undefined**, Geany will fall back to its default error message parsing. | adjetivo | Si **no está definido**, Geany vuelve a su análisis predeterminado de mensajes de error. |
+| **untitled** | *un-* + *titled* | By default, files backing **untitled** documents in this mode are stored under the Geany configuration directory. | adjetivo | Por defecto, los archivos que respaldan a los documentos **sin título** en este modo se guardan en el directorio de configuración de Geany. |
+| **unused** | *un-* + *used* | The fourth field is the description for this symbol but currently **unused** and should be left empty. | adjetivo | El cuarto campo es la descripción de este símbolo, pero por ahora **no se usa** y debe dejarse vacío. |
+| **unclosed** | *un-* + *closed* | If this setting is set to true, a new line after a line ending with an **unclosed** XML/HTML tag will be automatically indented. | adjetivo | Si esta opción está en true, una línea nueva después de una línea que termina con una etiqueta XML/HTML **sin cerrar** se va a sangrar automáticamente. |
+
+> **Trampa: *unaffected* no es voz pasiva.** Aunque termina en *-ed* y va después de *are*, no existe el verbo "unaffect". Por eso *are unaffected* describe un **estado** y *unaffected* es **adjetivo** (ver 5.4).
+>
+> **Compará con *undone*:** en *These can each be **undone** with the Undo command.*, la base es el **verbo** *undo* (*un-* + *do* = deshacer), así que *can be undone* sí es voz pasiva y *undone* es **verbo**: "se puede **deshacer**".
+
+#### Prefijos de repetición, tiempo, posición y cantidad
+
+| Prefijo | Significado | Palabras del manual | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- | --- |
+| **re-** | de nuevo | reload, reopened, reorder, regenerates, reshows, restart | Geany will **reload** the file after you have saved it. | Geany va a **volver a cargar** el archivo después de que lo guardes. |
+| **pre-** | antes | preview, preprocess, pre-defined | Don't **preprocess** C/C++ files when generating tags file. | No **preprocesar** los archivos C/C++ al generar el archivo de etiquetas. |
+| **sub-** | debajo; parte de | subdirectory, submenu, substring, subset | All symbols that contain the entered string as a **substring** will be shown in the tree. | Todos los símbolos que contengan la cadena ingresada como **subcadena** se van a mostrar en el árbol. |
+| **over-** | por encima; reemplazar | override, overwritten | The system files should not normally be edited because they will be **overwritten** when upgrading Geany. | Los archivos del sistema normalmente no deberían editarse, porque se van a **sobrescribir** al actualizar Geany. |
+| **under-** | por debajo | underline | **Underline** lines with compile errors using red squiggles to indicate them in the editor area. | **Subrayar** las líneas con errores de compilación con ondas rojas para marcarlas en el área del editor. |
+| **multi-** | muchos | multi-line, multi-user | It might be useful when Geany is installed on a **multi-user** machine and additional plugins are available in a common location for all users. | Puede ser útil cuando Geany está instalado en una máquina **multiusuario** y hay plugins adicionales disponibles en una ubicación común para todos los usuarios. |
+| **auto-** | automático; por sí mismo | auto-indentation, auto-detection, autocompletion | When enabled, **auto-indentation** happens when pressing Enter in the Editor. | Si está habilitada, la **sangría automática** se aplica al presionar Enter en el editor. |
+
+### 6.2 Sufijos
+
+Los sufijos se agrupan por la **categoría que forman**. Esto es lo que pregunta el examen: "¿qué sufijo forma un adjetivo positivo / un adverbio…?".
+
+#### Sufijos que forman adjetivos
+
+| Sufijo | Significado | Palabras del manual | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- | --- |
+| **-ful** | adjetivo **positivo**: "lleno de", "con" | useful (*use* + *-ful*), powerful (*power* + *-ful*) | Custom filetypes are not as **powerful** as built-in filetypes, but support for the following has been implemented: | Los tipos de archivo personalizados no son tan **potentes** como los incorporados, pero se implementó soporte para lo siguiente: |
+| **-less** | adjetivo **negativo**: "sin" | regardless (*regard* + *-less*); *(no está en el manual)*: useless | Independent build commands (available **regardless** of filetype). | Comandos de compilación independientes (disponibles **sin importar** el tipo de archivo). |
+| **-able** / **-ible** | "que se puede…" | configurable, compilable, customizable, readable, visible, flexible | For **compilable** languages such as C and C++, the Compile command is set up to compile the current source file into a binary object file. | Para los lenguajes **compilables** como C y C++, el comando Compile está configurado para compilar el archivo fuente actual en un archivo objeto binario. |
+| **-al** | "relativo a" | optional (*option* + *-al*), additional, original, universal | You can set an **optional** description for the project. | Podés ponerle una descripción **opcional** al proyecto. |
+| **-ive** | "que tiene la cualidad de" | alternative, relative, active | Geany also provides an **alternative** basic printing support using a custom print command. | Geany también ofrece un soporte de impresión básico **alternativo** usando un comando de impresión personalizado. |
+| **-ous** | "que tiene" | various (*vary* + *-ous*) | It lists **various** color schemes for editor highlighting styles, including the default scheme first. | Lista **varios** esquemas de colores para los estilos de resaltado del editor, empezando por el esquema predeterminado. |
+
+> ***-ful*** **frente a** ***-less***: con la misma base se forman adjetivos opuestos. *use* → ***useful*** ("útil", **positivo**) y ***useless*** ("inútil", **negativo**; no está en el manual). En *regardless*, el sufijo *-less* significa "sin" (*sin tener en cuenta*), pero en esta oración la palabra funciona como **adverbio**.
+
+#### Sufijos que forman sustantivos
+
+| Sufijo | Significado | Palabras del manual | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- | --- |
+| **-er** / **-or** | quien hace la acción, o la herramienta que la hace | compiler, printer, viewer, developer, editor, separator, indicator | Furthermore you need, of course, a C and C++ **compiler**. | Además, necesitás, por supuesto, un **compilador** de C y C++. |
+| **-ion** / **-ation** | acción o resultado | selection, completion, insertion, configuration, installation | If you want to find Geany's system files after **installation** you may want to know the **installation** prefix. | Si querés encontrar los archivos de sistema de Geany después de la **instalación**, te conviene saber el prefijo de **instalación**. |
+| **-ment** | acción o resultado | replacement, development, management | Project **management** is optional in Geany. | La **gestión** de proyectos es opcional en Geany. |
+| **-ity** | cualidad | functionality, security, readability | But for **security** reasons, it is recommended to specify the full path to the command. | Pero por razones de **seguridad**, se recomienda indicar la ruta completa al comando. |
+
+#### Sufijos que forman verbos y adverbios
+
+| Sufijo | Forma | Palabras del manual | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- | --- |
+| **-ize** / **-ise** | **verbo**: "convertir en", "hacer" | customize (*custom* + *-ize*), customise (ortografía británica) | You can **customize** the folding icon and line styles - see the filetypes.common Folding Settings . | Podés **personalizar** el ícono de plegado y los estilos de línea; ver Folding Settings en filetypes.common. |
+| **-ly** | **adverbio** de modo: "-mente" | quickly, easily, manually, correctly, usually, automatically | Alternatively the file can be created **manually**, adding only the settings you want to change. | Como alternativa, el archivo se puede crear **manualmente**, agregando solo las opciones que quieras cambiar. |
+
+> **Cambios ortográficos al agregar un sufijo:**
+>
+> - Se pierde la *e* final delante de vocal: *compile* → *compil**able***, *configure* → *configur**ation***.
+> - La *y* final pasa a *i*: *easy* → *eas**ily***, *vary* → *var**ious***.
+> - Con los adjetivos en *-ic* se agrega *-ally*: *automatic* → *automatic**ally***.
+
+#### Trampa: dos sufijos *-er* distintos
+
+| Sufijo | Se agrega a | Forma | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- | --- |
+| **-er** de agente | un **verbo** | **sustantivo** (quien lo hace) | Print a header on every page that is sent to the **printer**. | Imprimir un encabezado en cada página que se envía a la **impresora**. |
+| **-er** comparativo | un **adjetivo** corto | **adjetivo** comparativo ("más…") | The Pipe-separated format is **easier** to read and write. | El formato separado por barras verticales es **más fácil** de leer y escribir. |
+
+### 6.3 Palabras con varios afijos
+
+| Palabra | Formación | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- |
+| **readability** | *read* + *-able* (adjetivo) + *-ity* (sustantivo) | All search related dialogs use a Monospace font for the text input fields to increase the **readability** of input text. | Todos los diálogos de búsqueda usan una fuente monoespaciada en los campos de texto para mejorar la **legibilidad** del texto ingresado. |
+| **customizable** | *custom* + *-ize* (verbo) + *-able* (adjetivo) | The following tables list all **customizable** keyboard shortcuts, those which are common to many applications are marked with (C) after the shortcut. | Las siguientes tablas muestran todos los atajos de teclado **personalizables**; los que son comunes a muchas aplicaciones están marcados con (C) después del atajo. |
+| **incompatible** | *in-* (negación) + *compat* + *-ible* | Geany uses its own tags file format, similar to what ctags uses (but is **incompatible** with ctags). | Geany usa su propio formato de archivo de etiquetas, parecido al que usa ctags (pero **incompatible** con ctags). |
+| **autocompletion** | *auto-* + *complete* + *-ion* | The maximum number of items in the **autocompletion** list. | La cantidad máxima de elementos de la lista de **autocompletado**. |
+| **world-readable**, **insecure** | *read* + *-able*; *in-* + *secure* | This should help to not create **world-readable** files on possibly **insecure** destination directories like /tmp (especially useful on multi-user systems). | Esto debería ayudar a no crear archivos **legibles por cualquiera** en directorios de destino posiblemente **inseguros** como /tmp (especialmente útil en sistemas multiusuario). |
+
+### 6.4 Trampa: palabras que solo parecen tener un afijo
+
+Muchas palabras **empiezan o terminan** como un afijo, pero lo que queda no es una base con relación de significado. En el examen **no** cuentan como palabras con prefijo o sufijo.
+
+| Palabra | Parece… | Pero… | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- | --- |
+| **missing** | *mis-* + *sing* | es *miss* + *-ing* ("faltar") | All **missing** settings will be read from the system file. | Todas las opciones **que falten** se van a leer del archivo del sistema. |
+| **display** | *dis-* + *play* | no significa "no jugar": es una palabra entera ("mostrar") | Change the font used to **display** documents. | Cambiar la fuente que se usa para **mostrar** los documentos. |
+| **default** | *de-* + *fault* | no significa "quitar la falla": es una palabra entera ("predeterminado") | The **default** command is: | El comando **predeterminado** es: |
+| **under** | *un-* + *der* | es una preposición entera ("debajo de") | File templates are read from templates/files **under** the Configuration file paths . | Las plantillas de archivo se leen de templates/files **dentro de** las rutas de archivos de configuración. |
+| **until**, **unless** | *un-* + *til* / *un-* + *less* | son conjunciones enteras ("hasta que", "a menos que") | By default, no plugins are loaded at startup **until** you select some. | Por defecto, no se carga ningún plugin al iniciar **hasta que** selecciones alguno. |
+| **instance**, **instead**, **inside** | *in-* + *stance* / *stead* / *side* | *in-* no niega nada: son palabras enteras | For **instance** to improve the above example: | Por **ejemplo**, para mejorar el ejemplo anterior: |
+| **information** | *in-* + *formation* | no es "no formación": viene de *inform* + *-ation* | Show help **information** and exit. | Mostrar la **información** de ayuda y salir. |
+| **number** | *numb* + *-er* | no es "el que entumece": es una palabra entera | The **number** of files to remember in the recently used files list. | La **cantidad** de archivos que se recuerdan en la lista de archivos usados recientemente. |
+
+⚠️ **Prefijos "históricos" del latín:** *replace* (*re-* + *place*), *remove*, *return*, *review* (*re-* + *view*), *improve*, *increase*, *prevent*. Vienen de palabras que tenían prefijo en latín o en francés, y en algunos el significado todavía se nota (*review* = "volver a ver"). Pero en inglés actual se usan como palabras enteras. Consultar con la cátedra si los aceptan como ejemplos de prefijo. En esta guía los ejemplos de *re-* son solo los que claramente significan "de nuevo" (*reload*, *reopen*, *reorder*, *regenerate*).
+
+### 6.5 Cómo resolver las preguntas de afijos
+
+Las preguntas son del tipo "¿qué prefijo se le puede agregar a la palabra X?" o "¿qué sufijo forma un adjetivo positivo con X?". Para resolverlas:
+
+1. **Probá cada opción** pegada a la base (con los cambios ortográficos de 6.2).
+2. **Descartá las que no forman una palabra real** del inglés.
+3. Si la consigna pide una **categoría** (adjetivo positivo, adverbio…), quedate con la opción cuyo afijo forme esa categoría: *-ful* → adjetivo positivo; *-less* → adjetivo negativo; *-ly* → adverbio.
+
+`analizar.py` lo hace automáticamente con `--afijo`. Para decidir si una palabra existe, usa su **frecuencia de uso en inglés** (biblioteca `wordfreq`): por debajo de un umbral, se considera inexistente. Por ejemplo, con la base *use* y las opciones *ful*, *ly* y *less*:
+
+```console
+$ python analizar.py --afijo use ful ly less
+
+Base: use
+  ful     -> useful             (adjetivo positivo: lleno de, con (useful))
+  ly      -> no existe          (adverbio: de manera... (automatically))
+  less    -> useless            (adjetivo negativo: sin (useless))
+```
+
+Existen dos palabras (*useful* y *useless*). Si la consigna pide un **adjetivo positivo**, la respuesta es ***-ful***.
+
+> **Ojo:** la herramienta solo dice si la palabra **existe**, no si es la que pide la consigna. El paso 3 (la categoría y el significado) lo tenés que hacer vos.
+
+---
+
+## 7. Preguntas de práctica
+
+Son 20 preguntas propias, en el estilo del examen: opción múltiple y verdadero/falso sobre oraciones del manual. Intentá responder antes de abrir **Ver respuesta**. Cada respuesta incluye la explicación, la sección de la guía donde se ve el tema y la traducción de la oración.
+
+### Pregunta 1
+
+*The dialog is divided into three sections:*
+
+¿Cuántos **sustantivos** hay en la oración?
+
+a) 1 · b) 2 · c) 3 · d) 4
+
+<details>
+<summary>Ver respuesta</summary>
+
+**b) 2**: *dialog* y *sections*.
+
+*three* va delante de *sections* y lo modifica, así que es **adjetivo** (numeral), no sustantivo. *divided* es el participio de una voz pasiva (**verbo**). Ver 1.3 y 5.2.
+
+*Traducción:* El diálogo está dividido en tres secciones:
+
+</details>
+
+### Pregunta 2
+
+*Geany provides basic code folding support.*
+
+¿Cuántos **adjetivos** hay en la oración?
+
+a) 1 · b) 2 · c) 3 · d) 4
+
+<details>
+<summary>Ver respuesta</summary>
+
+**c) 3**: *basic*, *code* y *folding*.
+
+El núcleo de la frase nominal es *support* (el último sustantivo). Todo lo que va antes lo modifica y funciona como **adjetivo**: un adjetivo común (*basic*), un sustantivo (*code*) y una forma -ing (*folding*). *Geany* es sustantivo (sujeto) y *provides* es verbo. Ver 1.3.
+
+*Traducción:* Geany ofrece soporte básico para el plegado de código.
+
+</details>
+
+### Pregunta 3
+
+*Project file settings are saved when the project is closed.*
+
+¿Qué función cumple la palabra **FILE** en la oración?
+
+a) sustantivo · b) adjetivo · c) verbo · d) adverbio
+
+<details>
+<summary>Ver respuesta</summary>
+
+**b) adjetivo.**
+
+*file* va delante del núcleo *settings* y lo modifica. En el diccionario es un sustantivo, pero la cátedra clasifica por **función**. *Project* también es adjetivo en esta frase. Ver 1.1 y 1.3.
+
+*Traducción:* Las opciones del archivo de proyecto se guardan cuando se cierra el proyecto.
+
+</details>
+
+### Pregunta 4
+
+*Geany will reload the file after you have saved it.*
+
+¿Qué significa el prefijo **re-** en **RELOAD**?
+
+a) no · b) de nuevo · c) antes · d) mal
+
+<details>
+<summary>Ver respuesta</summary>
+
+**b) de nuevo.** *reload* = *re-* + *load*: "volver a cargar".
+
+*no* corresponde a *un-*, *in-* o *dis-*; *antes*, a *pre-*; *mal*, a *mis-*. Ver 6.1.
+
+*Traducción:* Geany va a volver a cargar el archivo después de que lo guardes.
+
+</details>
+
+### Pregunta 5
+
+¿Cuál de estas palabras es una **preposición**?
+
+a) however · b) through · c) although
+
+<details>
+<summary>Ver respuesta</summary>
+
+**b) through.** Aparece como preposición en *Press up or down to cycle **through** matches.* (Presioná arriba o abajo para recorrer las coincidencias.)
+
+*however* ("sin embargo") es un **adverbio conector** y *although* ("aunque") es una **conjunción**. Ver 2.3 y 2.5.
+
+</details>
+
+### Pregunta 6
+
+*Use the width 0 to make the caret invisible.*
+
+¿Qué función cumple la palabra **TO** en la oración?
+
+a) preposición · b) to + infinitivo · c) conjunción · d) adverbio
+
+<details>
+<summary>Ver respuesta</summary>
+
+**b) to + infinitivo.** *to* va seguido del verbo *make*.
+
+Si fuera delante de un sustantivo o una frase nominal, sería preposición (ver la pregunta 7). Ver 1.4 y 2.3.
+
+*Traducción:* Usá el ancho 0 para hacer invisible el cursor (caret).
+
+</details>
+
+### Pregunta 7
+
+*Setting it to 0 will disable this feature.*
+
+¿Qué función cumple la palabra **TO** en la oración?
+
+a) preposición · b) to + infinitivo · c) artículo · d) conjunción
+
+<details>
+<summary>Ver respuesta</summary>
+
+**a) preposición.** *to* va seguido de *0*, que funciona como sustantivo, no de un verbo.
+
+Comparala con la pregunta 6. Ver 1.4.
+
+*Traducción:* Ponerlo en 0 desactiva esta función.
+
+</details>
+
+### Pregunta 8
+
+*Snippet keybindings may be overridden by Geany's configurable keybindings.*
+
+Verdadero o falso: **GEANY'S** funciona como adjetivo, porque modifica a *keybindings*.
+
+<details>
+<summary>Ver respuesta</summary>
+
+**Falso.** Con el posesivo 's, la palabra sigue siendo **sustantivo** (criterio 3 de la cátedra), aunque vaya delante de otro sustantivo.
+
+En la frase *Geany's configurable keybindings*, el único adjetivo es *configurable*. Ver 1.4 y 5.5.
+
+*Traducción:* Los atajos de los snippets pueden ser reemplazados por los atajos configurables de Geany.
+
+</details>
+
+### Pregunta 9
+
+¿Cuál de estas palabras es un **artículo indefinido**?
+
+a) the · b) an · c) this
+
+<details>
+<summary>Ver respuesta</summary>
+
+**b) an**, como en ***An** optional message window which can show the following tabs:* (**Una** ventana de mensajes opcional que puede mostrar las siguientes pestañas:)
+
+*the* es artículo **definido**; *this* es **demostrativo**. Ver 2.2 y 2.4.
+
+</details>
+
+### Pregunta 10
+
+¿Qué sufijo se le agrega a **CORRECT** para formar un **adverbio**?
+
+a) -ful · b) -ly · c) -less
+
+<details>
+<summary>Ver respuesta</summary>
+
+**b) -ly** → *correctly* ("correctamente"). Aparece en *Snippet names must not contain spaces otherwise they won't work **correctly**.* (Los nombres de los snippets no deben contener espacios; de lo contrario, no van a funcionar **correctamente**.)
+
+*-ful* y *-less* forman adjetivos (positivo y negativo), y además *correctful* y *correctless* no existen. Ver 6.2 y 6.5.
+
+</details>
+
+### Pregunta 11
+
+¿Qué prefijo se le agrega a **COMPATIBLE** para formar su opuesto?
+
+a) un- · b) in- · c) dis-
+
+<details>
+<summary>Ver respuesta</summary>
+
+**b) in-** → *incompatible*. Aparece en *Geany uses its own tags file format, similar to what ctags uses (but is **incompatible** with ctags).* (Geany usa su propio formato de archivo de etiquetas, parecido al que usa ctags, pero **incompatible** con ctags.)
+
+Los tres prefijos niegan, pero solo *in-* forma una palabra real con esta base: *uncompatible* y *discompatible* no existen. Ver 6.1.
+
+</details>
+
+### Pregunta 12
+
+*Note that an empty pattern list searches in all files rather than none.*
+
+¿Qué función cumple la palabra **THAT** en la oración?
+
+a) demostrativo · b) pronombre relativo · c) conjunción · d) artículo
+
+<details>
+<summary>Ver respuesta</summary>
+
+**c) conjunción.** *that* introduce una oración completa (*an empty pattern list searches…*) que depende de *Note*. Equivale al "que" de "tené en cuenta **que**…".
+
+No es demostrativo, porque no va delante de un sustantivo al que señale (como en ***That** command*). Tampoco es pronombre relativo, porque no se refiere a un sustantivo anterior (como en *An optional sidebar **that** can show…*). Ver 2.4.
+
+*Traducción:* Tené en cuenta que una lista de patrones vacía busca en todos los archivos y no en ninguno.
+
+</details>
+
+### Pregunta 13
+
+*The first field is the symbol name (usually a function name).*
+
+¿Qué función cumple la palabra **USUALLY** en la oración?
+
+a) sustantivo · b) adjetivo · c) adverbio · d) conjunción
+
+<details>
+<summary>Ver respuesta</summary>
+
+**c) adverbio.** Es un adverbio de frecuencia, formado por *usual* + *-ly*. Los adverbios de frecuencia nunca son sustantivos. Ver 1.4 y 6.2.
+
+*Traducción:* El primer campo es el nombre del símbolo (generalmente, el nombre de una función).
+
+</details>
+
+### Pregunta 14
+
+*The current file is automatically saved before the command is run.*
+
+Verdadero o falso: la oración tiene voz pasiva.
+
+<details>
+<summary>Ver respuesta</summary>
+
+**Verdadero.** Tiene **dos** verbos en voz pasiva: *is saved* y *is run*. Los dos son *be* + participio (*run* es un participio irregular).
+
+Ninguna de las dos pasivas dice quién hace la acción (no hay *by* + agente). Ver 5.2 y 5.4.
+
+*Traducción:* El archivo actual se guarda automáticamente antes de que se ejecute el comando.
+
+</details>
+
+### Pregunta 15
+
+*What the default symbol list sort order should be.*
+
+¿Cuál es el **núcleo** de la frase nominal *the default symbol list sort order*?
+
+a) default · b) symbol · c) list · d) order
+
+<details>
+<summary>Ver respuesta</summary>
+
+**d) order.** El núcleo es el **último sustantivo** de la frase. *default*, *symbol*, *list* y *sort* lo modifican y funcionan como adjetivos. Ver 4.3, donde está el ejemplo resuelto paso a paso.
+
+*Traducción:* Cuál debería ser el orden de clasificación predeterminado de la lista de símbolos.
+
+</details>
+
+### Pregunta 16
+
+*Open the Preferences dialog, select the desired action and click on change.*
+
+¿Cuántos **verbos** hay en la oración?
+
+a) 2 · b) 3 · c) 4 · d) 5
+
+<details>
+<summary>Ver respuesta</summary>
+
+**b) 3**: *Open*, *select* y *click*, los tres en imperativo.
+
+Hay dos trampas:
+
+- *desired* va delante de *action*, así que es **adjetivo** (participio en función adjetiva).
+- *change* va después de la preposición *on*, así que es **sustantivo**: es el nombre del botón.
+
+Ver 1.4 y 3.3.
+
+*Traducción:* Abrí el diálogo Preferences, seleccioná la acción deseada y hacé clic en change.
+
+</details>
+
+### Pregunta 17
+
+*So you can easily see where your code failed to compile.*
+
+¿Qué función cumple la palabra **CAN** en la oración?
+
+a) sustantivo · b) verbo · c) modal · d) auxiliar
+
+<details>
+<summary>Ver respuesta</summary>
+
+**c) modal.** *can* va seguido de un verbo en forma base (*see*) y expresa posibilidad. Los modales son palabras **estructurales**. Ver 2.1.
+
+*Traducción:* Así podés ver fácilmente dónde falló la compilación de tu código.
+
+</details>
+
+### Pregunta 18
+
+¿Cuál de estas palabras es una **palabra estructural**?
+
+a) window · b) which · c) easily · d) useful
+
+<details>
+<summary>Ver respuesta</summary>
+
+**b) which.** Es un **pronombre** relativo, como en *Geany detects meta tags of HTML files **which** contain charset information like:* (Geany detecta las etiquetas meta de los archivos HTML **que** contienen información de codificación como:)
+
+Las otras tres son **conceptuales**: *window* es sustantivo, *easily* es adverbio y *useful* es adjetivo. Ver 1.2.
+
+</details>
+
+### Pregunta 19
+
+*The following format characters are available for the statusbar template:*
+
+Verdadero o falso: **FOLLOWING** funciona como sustantivo.
+
+<details>
+<summary>Ver respuesta</summary>
+
+**Falso.** *following* va delante de *format characters* y los modifica, así que funciona como **adjetivo** ("siguientes").
+
+Sería sustantivo si fuera el núcleo, sin nada después, como en *Currently, this works for the **following**:* ("lo siguiente"). Ver 1.4.
+
+*Traducción:* Los siguientes caracteres de formato están disponibles para la plantilla de la barra de estado:
+
+</details>
+
+### Pregunta 20
+
+*You can easily write your own global tags files using this format.*
+
+¿Cuántos **adjetivos** hay en la frase nominal *your own global tags files*?
+
+a) 2 · b) 3 · c) 4 · d) 5
+
+<details>
+<summary>Ver respuesta</summary>
+
+**b) 3**: *own*, *global* y *tags*.
+
+La trampa es *your*: es un **posesivo** (palabra estructural), no un adjetivo. *files* es el núcleo (sustantivo). *tags* está en plural, pero igual funciona como adjetivo por su posición. Ver 2.4 y 4.2.
+
+*Traducción:* Podés escribir fácilmente tus propios archivos de etiquetas globales usando este formato.
+
+</details>

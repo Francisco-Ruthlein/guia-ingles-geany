@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Casos de prueba con las respuestas oficiales de la cátedra (ver CLAUDE.md).
+Casos de prueba con las respuestas oficiales de la cátedra, más casos de
+existencia de palabras para el umbral de frecuencia de analizar.existe().
 Cualquier cambio en analizar.py tiene que seguir pasándolos.
 
 Uso:
@@ -45,6 +46,19 @@ def caso_opcion(opciones, funcion_buscada, esperada):
     return cumplen == [esperada], ", ".join(cumplen) or "(ninguna)"
 
 
+def caso_afijo(base, opciones, esperadas, categoria=None):
+    validas = A.afijos_posibles(base, opciones, categoria)
+    formas = [A.agregar_afijo(base, op) for op in validas]
+    return validas == esperadas, ", ".join(
+        f"{op} ({f})" for op, f in zip(validas, formas)) or "(ninguna)"
+
+
+def caso_existe(palabra, esperado):
+    ok = A.existe(palabra) == esperado
+    return ok, f"{'existe' if A.existe(palabra) else 'no existe'} " \
+               f"(zipf {A.zipf_frequency(palabra, 'en'):.2f})"
+
+
 CASOS = [
     ("Cantidad de sustantivos", "3 (list, Geany's, names)",
      lambda: caso_cantidad("Print a list of Geany's internal filetype names",
@@ -61,7 +75,8 @@ CASOS = [
          ("at", "Show the status bar at the bottom of the main window."),
          ("an", "An optional sidebar that can show the following tabs:"),
      ], "preposición", "at")),
-    ("Prefijo para UNDERSTAND: Mis / Dis / Un", "Mis", None),
+    ("Prefijo para UNDERSTAND: Mis / Dis / Un", "Mis",
+     lambda: caso_afijo("understand", ["mis", "dis", "un"], ["mis"])),
     ("¿SOMETIMES es sustantivo?", "Falso (adverbio)",
      lambda: caso_funcion("Sometimes you might need to ask for specific help "
                           "from your distribution.", "sometimes", "adverbio")),
@@ -74,10 +89,19 @@ CASOS = [
          ("the", "Show the status bar at the bottom of the main window."),
          ("an", "An optional sidebar that can show the following tabs:"),
      ], "artículo definido", "the")),
-    ("Sufijo para USE (adjetivo positivo): Ful / Ly / Less", "Ful", None),
+    ("Sufijo para USE (adjetivo positivo): Ful / Ly / Less", "Ful",
+     lambda: caso_afijo("use", ["ful", "ly", "less"], ["ful"],
+                        "adjetivo positivo")),
     ("Función de OPENED", "Adjetivo",
      lambda: caso_funcion("By default, this contains the last 10 recently "
                           "opened files.", "opened", "adjetivo")),
+] + [
+    # umbral de frecuencia de analizar.existe(): casos negativos y positivos
+    (f"¿Existe '{w}'?", "existe" if e else "no existe",
+     (lambda w=w, e=e: caso_existe(w, e)))
+    for w, e in [("disunderstand", False), ("ununderstand", False),
+                 ("usely", False), ("misunderstand", True),
+                 ("useful", True), ("useless", True)]
 ]
 
 

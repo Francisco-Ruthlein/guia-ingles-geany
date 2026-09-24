@@ -7,6 +7,8 @@ Uso:
   python analizar.py "Print a list of Geany's internal filetype names"
   python analizar.py --quiz geany.md
   python analizar.py --obsidian geany.md vault_ingles
+  python analizar.py --afijo understand mis dis un
+  python analizar.py --afijos geany.md
 """
 import re
 import sys
@@ -15,6 +17,7 @@ from collections import defaultdict, Counter
 from pathlib import Path
 
 import spacy
+from wordfreq import zipf_frequency
 
 nlp = spacy.load("en_core_web_md")
 
@@ -136,6 +139,10 @@ def funcion(tok):
 
     if (pos in ("ADJ", "NUM") or tag == "VBG") and nominalizado(tok):
         return "pronombre" if t == "one" else "sustantivo"
+    # 'one' sin sustantivo después reemplaza a uno: 'select one of these
+    # items', 'the current one'. Delante de sustantivo es numeral (adjetivo).
+    if t == "one" and not modifica_sustantivo(tok):
+        return "pronombre"
 
     # errores de etiquetado: 'A' (PRON) en 'Documents - A document list',
     # 'hex'/'meta' (PRON) delante de sustantivo, 'Go to symbol definition'
@@ -193,6 +200,20 @@ def funcion(tok):
     # Regla clave: sustantivo que modifica a otro sustantivo -> adjetivo
     if pos in ("NOUN", "PROPN"):
         if dep == "compound" and tok.head.pos_ in ("NOUN", "PROPN"):
+            return "adjetivo"
+        # el modelo corta la frase: 'the users home directory' -> 'users'
+        # queda como núcleo, pero está delante de otro modificador de 'directory'
+        # (no se aplica a la primera palabra, que puede ser un verbo mal
+        # etiquetado, ni delante de nombres técnicos o propios: 'the option
+        # Directory levels', 'A shorthand S-E')
+        if (pos == "NOUN" and nxt is not None and nxt.dep_ in ("compound", "amod")
+                and nxt.head.i > nxt.i and nxt.head.pos_ == "NOUN"
+                and tok.head != nxt.head and tok.i != tok.sent.start
+                and nxt.is_alpha
+                and not (nxt.text[:1].isupper() and tok.text[:1].islower())
+                # 'project related', 'syntax highlighted' sí; '0 disables
+                # automatic updates' no (ahí 'disables' es el verbo)
+                and (nxt.dep_ == "compound" or nxt.tag_ in ("VBN", "VBG"))):
             return "adjetivo"
         return "sustantivo"
 
@@ -304,6 +325,151 @@ def analizar_oracion(texto):
                   f"modificadores: {', '.join(mods)}")
 
 
+# ---------- Afijos ----------
+
+# frecuencia Zipf (wordfreq): 0 = no aparece en inglés; 'useful' = 4.7.
+# Por debajo del umbral la palabra se considera inexistente ('usely' = 0).
+UMBRAL_ZIPF = 1.0
+
+PREFIJOS = {
+    "un": "no, lo contrario (unable, undo)",
+    "dis": "no, lo opuesto (disable, disagree)",
+    "mis": "mal, de forma incorrecta (misunderstand, misuse)",
+    "re": "de nuevo (reload, redo)",
+    "pre": "antes (preview, pre-defined)",
+    "non": "no (non-option, nonexistent)",
+    "in": "no (incompatible, invisible)",
+    "im": "no, ante b/m/p (impossible)",
+    "il": "no, ante l (illegal)",
+    "ir": "no, ante r (irregular)",
+    "multi": "muchos (multi-line)",
+    "auto": "automático, por sí mismo (auto-indentation)",
+    "sub": "debajo, parte de (subdirectory)",
+    "over": "por encima, reemplazar (override, overwrite)",
+    "under": "por debajo (underline)",
+    "de": "quitar, revertir (deselect)",
+    "inter": "entre (interactive)",
+}
+
+# sufijo -> (categoría que forma, significado)
+SUFIJOS = {
+    "ful": ("adjetivo positivo", "lleno de, con (useful)"),
+    "less": ("adjetivo negativo", "sin (useless)"),
+    "ly": ("adverbio", "de manera... (automatically)"),
+    "able": ("adjetivo", "que se puede (configurable)"),
+    "ible": ("adjetivo", "que se puede (visible)"),
+    "ness": ("sustantivo", "cualidad (darkness)"),
+    "ment": ("sustantivo", "acción o resultado (replacement)"),
+    "ation": ("sustantivo", "acción o resultado (configuration)"),
+    "ion": ("sustantivo", "acción o resultado (selection)"),
+    "er": ("sustantivo", "quien hace algo / herramienta (editor, parser)"),
+    "or": ("sustantivo", "quien hace algo / herramienta (editor)"),
+    "ity": ("sustantivo", "cualidad (functionality)"),
+    "al": ("adjetivo", "relativo a (optional)"),
+    "ive": ("adjetivo", "que tiene la cualidad de (interactive)"),
+    "ous": ("adjetivo", "que tiene (various)"),
+    "ize": ("verbo", "convertir en (customize)"),
+    "ise": ("verbo", "convertir en (customise)"),
+}
+
+
+def existe(palabra):
+    """True si la palabra se usa en inglés (según su frecuencia en wordfreq)."""
+    return zipf_frequency(palabra.lower(), "en") >= UMBRAL_ZIPF
+
+
+def formas_con_sufijo(base, sufijo):
+    """Variantes ortográficas de base + sufijo: use+able -> usable,
+    easy+ly -> easily, use+ful -> useful."""
+    b = base.lower()
+    formas = [b + sufijo]
+    if b.endswith("e") and sufijo[0] in "aeiou":
+        formas.append(b[:-1] + sufijo)                 # use -> usable
+    if b.endswith("y") and len(b) > 2 and b[-2] not in "aeiou":
+        formas.append(b[:-1] + "i" + sufijo)           # easy -> easily
+    if b.endswith("le") and sufijo == "ly":
+        formas.append(b[:-1] + "y")                    # possible -> possibly
+    return formas
+
+
+def agregar_afijo(base, afijo):
+    """Palabra existente que resulta de agregar el afijo (prefijo o sufijo)
+    a la base, o None. 'understand' + 'mis' -> 'misunderstand'."""
+    a = afijo.lower().strip("-")
+    if a in SUFIJOS:
+        candidatas = formas_con_sufijo(base, a)
+    else:
+        candidatas = [a + base.lower()]
+    return next((c for c in candidatas if existe(c)), None)
+
+
+def afijos_posibles(base, opciones, categoria=None):
+    """Cuáles de las opciones (prefijos o sufijos) forman una palabra real
+    con la base. Con 'categoria' se filtran los sufijos por lo que forman:
+    afijos_posibles('use', ['ful', 'ly', 'less'], 'adjetivo positivo')."""
+    res = []
+    for op in opciones:
+        a = op.lower().strip("-")
+        if categoria and SUFIJOS.get(a, ("",))[0] != categoria:
+            continue
+        if agregar_afijo(base, a):
+            res.append(op)
+    return res
+
+
+def descomponer(palabra):
+    """Prefijos y sufijos reconocibles de una palabra, si la base existe
+    por sí sola: 'unaffected' -> [('un', 'affected')].
+    Es heurístico: los resultados se revisan a mano."""
+    w = palabra.lower().replace("-", "")
+    res = []
+    for p in sorted(PREFIJOS, key=len, reverse=True):
+        base = w[len(p):]
+        if w.startswith(p) and len(base) >= 3 and existe(base) \
+                and zipf_frequency(base, "en") >= 3:
+            res.append(("prefijo", p, base))
+            break
+    for s in sorted(SUFIJOS, key=len, reverse=True):
+        if not w.endswith(s) or len(w) - len(s) < 3:
+            continue
+        raiz = w[:-len(s)]
+        for base in (raiz, raiz + "e", raiz[:-1] + "y" if raiz.endswith("i") else None):
+            if base and existe(base) and zipf_frequency(base, "en") >= 3 \
+                    and w in formas_con_sufijo(base, s):
+                res.append(("sufijo", s, base))
+                break
+        else:
+            continue
+        break
+    return res
+
+
+def afijos_del_manual(ruta):
+    """Palabras del manual con prefijo o sufijo, con una oración de ejemplo."""
+    vistas = {}
+    for s in oraciones_del_manual(ruta, 4, 25):
+        o = " ".join(s.text.split())
+        for tok in s:
+            w = tok.lower_
+            if not re.fullmatch(r"[a-z]+(-[a-z]+)?", w) or w in vistas:
+                continue
+            partes = descomponer(w)
+            if partes:
+                vistas[w] = (partes, funcion(tok), o)
+    return vistas
+
+
+def mostrar_afijo(base, opciones):
+    print(f"\nBase: {base}")
+    for op in opciones:
+        a = op.lower().strip("-")
+        palabra = agregar_afijo(base, a)
+        tipo = SUFIJOS[a][0] if a in SUFIJOS else "prefijo"
+        significado = SUFIJOS[a][1] if a in SUFIJOS else PREFIJOS.get(a, "?")
+        estado = f"-> {palabra}" if palabra else "-> no existe"
+        print(f"  {op:8}{estado:22}({tipo}: {significado})")
+
+
 # ---------- Limpieza del Markdown ----------
 
 def limpiar_markdown(md):
@@ -350,8 +516,33 @@ def oraciones_del_manual(ruta, min_palabras=6, max_palabras=25):
 
 # ---------- Modo quiz ----------
 
+NUCLEOS_DE_OPCION = {"option", "options", "preference", "preferences",
+                     "setting", "settings", "checkbox", "box", "button",
+                     "field", "item", "dialog", "command", "keybinding",
+                     "expander", "tab", "menu", "bar", "entry"}
+
+
+def tiene_nombre_de_opcion(sent):
+    """True si la oración nombra una opción del programa que empieza con un
+    verbo: 'the Use escape sequences option', 'the Enable plugin support
+    general preference'. Ese nombre funciona en bloque como adjetivo, y sus
+    palabras no se cuentan por separado: el quiz descarta estas oraciones."""
+    toks = list(sent)
+    for i, t in enumerate(toks[1:-1], 1):
+        if not (t.text[:1].isupper() and toks[i - 1].lower_ == "the"
+                and puede_ser_verbo(t.text)):
+            continue
+        for u in toks[i + 1:i + 8]:
+            if u.lower_ in NUCLEOS_DE_OPCION:
+                return True
+            if u.is_punct or u.pos_ in ("AUX", "ADP", "SCONJ", "CCONJ"):
+                break
+    return False
+
+
 def quiz(ruta):
-    sents = oraciones_del_manual(ruta)
+    sents = [s for s in oraciones_del_manual(ruta)
+             if not tiene_nombre_de_opcion(s)]
     print(f"{len(sents)} oraciones cargadas. Enter para seguir, 'q' para salir.")
     plural = {"sustantivo": "sustantivos", "adjetivo": "adjetivos",
               "verbo": "verbos", "preposición": "preposiciones",
@@ -453,5 +644,13 @@ if __name__ == "__main__":
         quiz(args[1])
     elif args[0] == "--obsidian" and len(args) == 3:
         obsidian(args[1], args[2])
+    elif args[0] == "--afijo" and len(args) >= 3:
+        mostrar_afijo(args[1], args[2:])
+    elif args[0] == "--afijos" and len(args) == 2:
+        print("⚠️ Candidatos automáticos: revisar a mano. Muchas palabras solo "
+              "parecen tener afijo ('display' no es dis + play).\n")
+        for w, (partes, f, o) in sorted(afijos_del_manual(args[1]).items()):
+            desc = ", ".join(f"{t} {a} + {b}" for t, a, b in partes)
+            print(f"{w:20}{f:14}{desc:32}| {o}")
     else:
         analizar_oracion(" ".join(args))

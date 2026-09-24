@@ -1,0 +1,4 @@
+spacy==3.8.16
+wordfreq==3.1.1
+# modelo de inglés de spaCy (instalar aparte):
+#   python -m spacy download en_core_web_md
