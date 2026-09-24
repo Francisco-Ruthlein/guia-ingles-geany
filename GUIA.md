@@ -14,7 +14,7 @@ Guía gratuita para preparar Inglés I (Analista de Sistemas, FCEQyN, UNaM). Tod
 2. [Palabras estructurales: modales, preposiciones, artículos, pronombres y conectores](#2-palabras-estructurales)
 3. [Top 40 de sustantivos, adjetivos y verbos](#3-top-40-de-sustantivos-adjetivos-y-verbos)
 4. [Frases nominales resueltas](#4-frases-nominales-resueltas)
-5. Voz pasiva *(pendiente)*
+5. [Voz pasiva](#5-voz-pasiva)
 6. Afijos *(pendiente)*
 7. Preguntas de práctica *(pendiente)*
 
@@ -142,7 +142,7 @@ En *Geany's configurable keybindings* hay 2 sustantivos (*Geany's, keybindings*)
 
 ⚠️ Los criterios de la cátedra solo hablan del participio **delante** del sustantivo. Cuando va **después** (*the temporary file referenced by %f*), la gramática lo considera una forma verbal: equivale a una oración relativa reducida, "the file **that is** referenced" (paráfrasis, no está en el manual). Confirmar con la cátedra.
 
-**Nota:** spaCy a veces etiqueta como adjetivo el participio de la voz pasiva (*may be overridden*). `analizar.py` lo corrige a **verbo** cuando va seguido de *by*; sin *by*, puede seguir marcándolo como adjetivo.
+**Nota:** spaCy a veces etiqueta como adjetivo el participio de la voz pasiva (*may be overridden*, *can be disabled*, *is closed*). `analizar.py` lo corrige a **verbo** cuando la palabra, después de *be*, es un participio. Lo que queda como **adjetivo** son los adjetivos reales, como *is open*, *is useful* o *are unaffected* (ver 5.4).
 
 #### Formas -ing: tres funciones posibles
 
@@ -750,3 +750,149 @@ Si la pregunta es "¿cuántos sustantivos hay en la oración?", la respuesta es 
 ⚠️ **Nombres de opciones y menús (4.5.5):** en frases como *the **Use escape sequences** option* o *the **Enable plugin support** general preference*, el nombre de la opción incluye un verbo en imperativo (*Use*, *Enable*). Por su posición, todo el nombre funciona como modificador del núcleo. Falta confirmar con la cátedra cómo cuentan cada palabra por separado.
 
 ⚠️ **Oración de 4.3.1:** en *What the default symbol list sort order **should be**.*, el script marca *be* como **auxiliar**, pero ahí es el verbo principal. Por eso en 4.3 figura como verbo.
+
+---
+
+## 5. Voz pasiva
+
+La voz pasiva es muy común en el manual: **344 oraciones** (de las que tienen entre 4 y 22 palabras). Un manual describe qué le pasa al programa y a los archivos, más que quién hace la acción.
+
+### 5.1 Cómo reconocerla
+
+**Estructura:** ***be*** (en cualquier forma) + **participio pasado** (+ *by* + agente, opcional).
+
+| Parte | Ejemplo | Función según la cátedra | Tipo |
+| --- | --- | --- | --- |
+| *be* conjugado: *is*, *are*, *was*, *be*, *been*, *being* | *is*, *can **be*** | **auxiliar** | estructural |
+| participio pasado: *-ed* o irregular | *divided*, *shown*, *read* | **verbo** | conceptual |
+| *by* (si aparece) | *by* | **preposición** | estructural |
+| agente (quién hace la acción) | *Geany*, *GTK* | **sustantivo** | conceptual |
+
+Si hay un modal, se cuenta aparte: en *can be defined*, *can* es **modal**, *be* es **auxiliar** y *defined* es **verbo**.
+
+**Cómo traducirla:**
+
+- Con **"se"** + verbo, que suele ser lo más natural: *are scanned* → **se buscan**.
+- Con **"ser"** + participio: *was compiled* → **fue compilado**.
+- Con **"estar"** + participio, cuando describe un estado: *is divided* → **está dividido**.
+
+### 5.2 Formas de la pasiva en el manual
+
+| Forma | Veces | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- |
+| presente singular: *is* + participio | 129 | The dialog **is divided** into three sections: | El diálogo **está dividido** en tres secciones: |
+| presente plural: *are* + participio | 84 | Plugins **are scanned** in the following directories: | Los plugins **se buscan** en los siguientes directorios: |
+| *can be* + participio | 54 | Keyboard shortcuts **can be defined** for: | **Se pueden definir** atajos de teclado para: |
+| *will be* + participio | 37 | A few characters **will not be replaced**. | Algunos caracteres **no se van a reemplazar**. |
+| pasado: *was* + participio | 10 | Only available if Geany **was compiled** with support for Sockets. | Solo disponible si Geany **fue compilado** con soporte para Sockets. |
+| *should be* + participio | 10 | How the date **should be printed**. | Cómo **se debería imprimir** la fecha. |
+| infinitivo: *to be* + participio | 7 | Allow plugins **to be used** in Geany. | Permitir que **se usen** plugins en Geany. |
+| *must be* + participio | 3 | The interface pref **must be enabled** for this to work. | La preferencia de interfaz **tiene que estar habilitada** para que esto funcione. |
+| *may be* + participio | 2 | Snippet keybindings **may be overridden** by Geany's configurable keybindings. | Los atajos de los snippets **pueden ser reemplazados** por los atajos configurables de Geany. |
+| *would be* + participio | 1 | For example, [ **would be interpreted** as [ and not as the start of a character set. | Por ejemplo, [ **se interpretaría** como [ y no como el comienzo de un conjunto de caracteres. |
+| perfecto: *has been* + participio | 1 | Custom filetypes are not as powerful as built-in filetypes, but support for the following **has been implemented**: | Los tipos de archivo personalizados no son tan potentes como los incorporados, pero **se implementó** soporte para lo siguiente: |
+| infinitivo perfecto: *to have been* + participio | 1 | It has **to have been built** already. | Tiene que **haber sido compilado** antes. |
+| gerundio: *being* + participio | 1 | There is also a command-line option, -p , which prevents plugins **being loaded**. | También hay una opción de línea de comandos, -p, que evita que **se carguen** los plugins. |
+| ⚠️ *get* + participio | 1 | Ensures that newline characters always **get converted** before saving, avoiding mixed line endings in the same file. | Asegura que los saltos de línea **se conviertan** siempre antes de guardar, para evitar finales de línea mezclados en el mismo archivo. |
+
+⚠️ ***get converted***: la pasiva con *get* es informal y algunas gramáticas no la cuentan como voz pasiva. spaCy la trata como pasiva. Consultar con la cátedra si en el examen cuenta como tal y si *get* es auxiliar o verbo.
+
+### 5.3 Pasiva con agente (*by*)
+
+La mayoría de las pasivas del manual **no dicen quién hace la acción**. Unas 25 tienen *by* después del participio, pero no en todas *by* introduce el agente (ver 5.4). Cuando lo hace, pasar la oración a voz activa ayuda a entenderla. Las versiones en voz activa de esta tabla son **paráfrasis (no están en el manual)**.
+
+| Oración del manual (pasiva) | Agente | Paráfrasis en voz activa (no está en el manual) | Traducción |
+| --- | --- | --- | --- |
+| Only the first two match groups **will be read by Geany**. | Geany | "Geany will read only the first two match groups." | Geany solo va a **leer** los dos primeros grupos de coincidencia. |
+| The choice System default uses whatever icon style **is set by GTK**. | GTK | "…whatever icon style GTK sets." | La opción System default usa el estilo de íconos que **configure GTK**. |
+| There are some wildcards which **will be automatically replaced by Geany** at startup. | Geany | "…which Geany will automatically replace at startup." | Hay algunos comodines que Geany **va a reemplazar automáticamente** al iniciar. |
+| These **can also be overridden by custom keybindings**. | custom keybindings | "Custom keybindings can also override these." | Los atajos personalizados también **pueden reemplazar** estos. |
+| Multiple filters **can be separated by a space**. | a space (instrumento) | "A space can separate multiple filters." | Se pueden **separar** varios filtros **con un espacio**. |
+
+En la última oración, *a space* no es alguien que hace una acción, sino el **medio**: por eso en español se traduce "**con** un espacio" y no "por un espacio".
+
+### 5.4 Trampas
+
+#### Participio: ¿verbo o adjetivo?
+
+| Posición | Ejemplo del manual | Función | Traducción |
+| --- | --- | --- | --- |
+| después de *be* (pasiva) | The current file is automatically saved before the command **is run**. | **verbo** | El archivo actual se guarda automáticamente antes de que **se ejecute** el comando. |
+| delante del sustantivo | the **selected** item | **adjetivo** | el elemento **seleccionado** |
+| después del sustantivo | That command should ideally delete the temporary file **referenced** by %f. | **verbo** ⚠️ (ver 1.4) | Idealmente, ese comando debería borrar el archivo temporal **referenciado** por %f. |
+
+#### Adjetivos después de *be* que NO son pasiva
+
+No todo *be* + palabra es voz pasiva. Si la palabra es un **adjetivo** (no un participio), es una oración común con un adjetivo que describe al sujeto.
+
+| Oración del manual | Palabra | Función | Traducción |
+| --- | --- | --- | --- |
+| The former menu item also shows the project dialog when a project **is open**. | open | **adjetivo** (*open* no es participio: el participio es *opened*) | El elemento de menú anterior también muestra el diálogo del proyecto cuando hay un proyecto **abierto**. |
+| This **is useful** to save vertical space. | useful | **adjetivo** (*use* + *-ful*) | Esto **es útil** para ahorrar espacio vertical. |
+| The following format characters **are available** for the statusbar template: | available | **adjetivo** | Los siguientes caracteres de formato **están disponibles** para la plantilla de la barra de estado: |
+| This only applies to files opened explicitly from the command line, so files from previous sessions or project files **are unaffected**. ⚠️ | unaffected | **adjetivo** ⚠️ | Esto solo se aplica a los archivos abiertos explícitamente desde la línea de comandos, así que los archivos de sesiones anteriores o de proyectos **no se ven afectados**. |
+
+⚠️ ***are unaffected***: parece pasiva (*un-* + *affected*), pero no existe el verbo "unaffect". Describe un **estado** ("no afectados"), no una acción, así que se clasifica como **adjetivo**. El prefijo *un-* se ve en la sección 6.
+
+**Compará con *undone*:** en *These can each be **undone** with the Undo command.* (Cada uno de estos **se puede deshacer** con el comando Undo), *undo* sí es un verbo ("deshacer"), así que *can be undone* **es pasiva** y *undone* es **verbo**.
+
+#### *by* no siempre introduce el agente
+
+| Oración del manual | ¿Qué es *by*? | Traducción |
+| --- | --- | --- |
+| **By default**, file templates are installed for some filetypes. | parte de la expresión *by default* ("por defecto"). La oración es pasiva (*are installed*), pero no tiene agente. | **Por defecto**, se instalan plantillas de archivo para algunos tipos de archivo. |
+| The highlighted item on the autocompletion list can be chosen from the list **by pressing** Enter/Return. | *by* + -ing = **modo** ("presionando"), no agente | El elemento resaltado en la lista de autocompletado se puede elegir **presionando** Enter/Return. |
+| Subline is indented **by at least 1** to make room for the flag. | *by* + número = **cantidad** ("en al menos 1") | La sublínea se sangra **al menos 1** para dejar lugar a la marca. |
+
+En los tres casos, *by* sigue siendo **preposición**. Lo que cambia es que lo que viene después no es el agente.
+
+#### *'s* puede ser *is*
+
+*Currently it**'s** only used for the {description}} template wildcard - see Dynamic wildcards .* → Actualmente **solo se usa** para el comodín de plantilla {description}; ver Dynamic wildcards.
+
+Acá *it's* = *it is*, y *'s used* es voz pasiva. No lo confundas con el **posesivo** 's (*Geany's*), que va pegado a un sustantivo.
+
+#### Participios irregulares del manual
+
+Estos participios no terminan en *-ed*. Conviene reconocerlos, porque en el examen pueden aparecer en una pasiva.
+
+| Verbo | Participio | Veces en pasiva | Ejemplo del manual | Traducción |
+| --- | --- | --- | --- | --- |
+| set (configurar) | **set** | 19 | On Windows, no explicit file permissions **are set**. | En Windows no **se configuran** permisos de archivo explícitos. |
+| show (mostrar) | **shown** | 17 | The Geany window **is shown** in the following figure: | La ventana de Geany **se muestra** en la siguiente figura: |
+| read (leer) | **read** | 11 | All missing settings **will be read** from the system file. | Todas las opciones que falten **se van a leer** del archivo del sistema. |
+| override (reemplazar) | **overridden** | 8 | These are default settings that **can be overridden** in the Preferences dialog. | Estas son opciones predeterminadas que **se pueden reemplazar** en el diálogo Preferences. |
+| find (encontrar) | **found** | 5 | These options **should be found** in the manual page of the shell. | Estas opciones **deberían encontrarse** en la página del manual del shell. |
+| do (hacer) | **done** | 3 | Most of the configuration of the build menu **is done** through the Set Build Commands dialog . | La mayor parte de la configuración del menú de compilación **se hace** desde el diálogo Set Build Commands. |
+| leave (dejar) | **left** | 3 | The fourth field is the description for this symbol but currently unused and **should be left** empty. | El cuarto campo es la descripción de este símbolo, pero por ahora no se usa y **debe dejarse** vacío. |
+| lose (perder) / write (escribir) | **lost** / **written** | 2 / 2 | All characters after this position **are lost** and **are not written** when you save the file. | Todos los caracteres después de esa posición **se pierden** y **no se escriben** cuando guardás el archivo. |
+| draw (dibujar) | **drawn** | 2 | Amount of space **to be drawn** above and below the line's baseline. | Cantidad de espacio que **se dibuja** por encima y por debajo de la línea base. |
+| choose (elegir) | **chosen** | 1 | The highlighted item on the autocompletion list **can be chosen** from the list by pressing Enter/Return. | El elemento resaltado en la lista de autocompletado **se puede elegir** presionando Enter/Return. |
+| know (conocer) | **known** | 1 | The Tabs and Spaces indent type **is also known** as Soft tab support in some other editors. | El tipo de sangría Tabs and Spaces **también se conoce** como Soft tab support en otros editores. |
+| keep (mantener) | **kept** | 1 | Also, modification information **is not kept** when re-opening a document - all change markers will be lost. | Además, la información de modificaciones **no se conserva** al volver a abrir un documento: se pierden todas las marcas de cambios. |
+| undo (deshacer) | **undone** | 1 | These **can each be undone** with the Undo command. | Cada uno de estos **se puede deshacer** con el comando Undo. |
+| send (enviar) | **sent** | 1 | Print a header on every page that **is sent** to the printer. | Imprimir un encabezado en cada página que **se envía** a la impresora. |
+| run (ejecutar) | **run** | 1 | The current file is automatically saved before the command **is run**. | El archivo actual se guarda automáticamente antes de que **se ejecute** el comando. |
+| shut down (cerrar) | **shut** | 1 | These settings are saved automatically when Geany **is shut down**. | Estas opciones se guardan automáticamente cuando **se cierra** Geany. |
+| overwrite (sobrescribir) | **overwritten** | 1 | The system files should not normally be edited because they **will be overwritten** when upgrading Geany. | Los archivos del sistema normalmente no deberían editarse, porque **se van a sobrescribir** al actualizar Geany. |
+| build (compilar) | **built** | 1 | It has to have **been built** already. | Tiene que **haber sido compilado** antes. |
+
+> ***set*** **y** ***read*** **tienen la misma forma en presente, pasado y participio.** Para saber si son participio, fijate si hay un *be* antes: *are **set*** y *will be **read*** son pasivas. En cambio, en ***Set** this to a command…* (imperativo), *set* es un verbo en forma base.
+
+### 5.5 Ejemplo resuelto palabra por palabra
+
+*Snippet keybindings may be overridden by Geany's configurable keybindings.* → Los atajos de los snippets pueden ser reemplazados por los atajos configurables de Geany.
+
+| Palabra | Función | Tipo | Por qué |
+| --- | --- | --- | --- |
+| Snippet | adjetivo | C | sustantivo que modifica a *keybindings* |
+| keybindings | sustantivo | C | núcleo de la frase nominal (sujeto) |
+| may | modal | E | posibilidad ("pueden") |
+| be | auxiliar | E | auxiliar de la pasiva |
+| overridden | verbo | C | participio (irregular) de *override*: voz pasiva |
+| by | preposición | E | introduce el agente |
+| Geany's | sustantivo | C | posesivo 's: sigue siendo sustantivo |
+| configurable | adjetivo | C | modifica a *keybindings* (*configure* + *-able*) |
+| keybindings | sustantivo | C | núcleo de la frase nominal (agente) |
+
+**Conteo:** 3 sustantivos (*keybindings*, *Geany's*, *keybindings*), 2 adjetivos (*Snippet*, *configurable*), 1 verbo (*overridden*), 1 modal, 1 auxiliar y 1 preposición. En total hay 6 palabras conceptuales (C) y 3 estructurales (E).

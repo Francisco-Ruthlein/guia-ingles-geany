@@ -64,6 +64,30 @@ def imperativo_mal_etiquetado(tok):
     return (al_inicio or tras_conj) and puede_ser_verbo(tok.text)
 
 
+_cache_participio = {}
+# participios que el modelo etiqueta como adjetivo en cualquier contexto
+# ('overridden') o que no terminan en -ed/-en ('quit')
+PARTICIPIOS_IRREGULARES = {"overridden", "quit"}
+
+
+def es_participio(palabra):
+    """True si la palabra es un participio pasado ('disabled', 'closed') y no
+    un adjetivo ('open', 'useful', 'unaffected', 'interested')."""
+    w = palabra.lower()
+    if w not in _cache_participio:
+        t = nlp(f"It was {w} by the user.")[2]
+        _cache_participio[w] = (w in PARTICIPIOS_IRREGULARES
+                                or (w.endswith(("ed", "en")) and t.tag_ == "VBN"
+                                    and t.dep_ != "acomp"))
+    return _cache_participio[w]
+
+
+def participio_tras_be(tok):
+    """Pasiva que el modelo no detecta: 'can be overridden', 'is closed'."""
+    return (tok.pos_ == "ADJ" and tok.dep_ == "acomp"
+            and tok.head.lemma_ == "be" and es_participio(tok.text))
+
+
 TECNICO = re.compile(r"[/\\~#=()\[\]{}<>]|^[-+.]|-$|\w\.\w|\w-\d|\d[a-z]|[a-z]\d",
                      re.I)
 ABREVIATURAS = {"e.g.", "i.e.", "etc.", "vs.", "esp."}
@@ -140,9 +164,8 @@ def funcion(tok):
             (t == "down" and prev is not None and prev.lower_ == "drop"
              and nxt is not None and nxt.pos_ in ("NOUN", "PROPN")):
         return "adjetivo"                 # 'drop down box'
-    if pos == "ADJ" and dep == "acomp" and tok.head.lemma_ == "be" \
-            and nxt is not None and nxt.lower_ == "by":
-        return "verbo"                    # pasiva: 'may be overridden by'
+    if participio_tras_be(tok):
+        return "verbo"                    # pasiva: 'can be overridden'
 
     # gerundio (-ing) como sujeto o después de preposición -> sustantivo:
     # 'Setting it to 0 will...', 'after selecting', 'during typing'
@@ -252,7 +275,8 @@ def frases_nominales(sent):
 
 
 def es_pasiva(sent):
-    return any(t.dep_ in ("auxpass", "nsubjpass") for t in sent)
+    return any(t.dep_ in ("auxpass", "nsubjpass") or participio_tras_be(t)
+               for t in sent)
 
 
 def analizar_oracion(texto):
