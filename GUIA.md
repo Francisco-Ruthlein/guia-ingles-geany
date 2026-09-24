@@ -13,7 +13,7 @@ Guía gratuita para preparar Inglés I (Analista de Sistemas, FCEQyN, UNaM). Tod
 1. [Criterios de la cátedra: función, frase nominal y casos trampa](#1-criterios-de-la-cátedra)
 2. [Palabras estructurales: modales, preposiciones, artículos, pronombres y conectores](#2-palabras-estructurales)
 3. [Top 40 de sustantivos, adjetivos y verbos](#3-top-40-de-sustantivos-adjetivos-y-verbos)
-4. Frases nominales resueltas *(pendiente)*
+4. [Frases nominales resueltas](#4-frases-nominales-resueltas)
 5. Voz pasiva *(pendiente)*
 6. Afijos *(pendiente)*
 7. Preguntas de práctica *(pendiente)*
@@ -651,3 +651,102 @@ La columna **Forma** indica cómo aparece el verbo en el ejemplo. En el manual a
 > - **Muchos verbos del manual también son sustantivos:** *use*, *set*, *type*, *search*, *click*, *list*, *match*. Mirá la función: en *the search results*, *search* es adjetivo; en *Remove all messages*, *Remove* es verbo en imperativo.
 > - **Imperativo en infinitivo:** en las listas de opciones del manual, el imperativo se traduce mejor con infinitivo (*Remove all messages…* → **Eliminar** todos los mensajes…). En las instrucciones al lector, se traduce con el imperativo (*Open the Preferences dialog…* → **Abrí** el diálogo…). Las dos son la misma forma en inglés: **verbo**.
 > - **Pasiva = *be* + participio:** *are saved*, *is used*, *will be read*. El participio es **verbo** y *be* es **auxiliar**. En español suele traducirse con "se" (*se guardan*, *se usa*).
+
+---
+
+## 4. Frases nominales resueltas
+
+El método está en la sección 1.3. En resumen: el **núcleo** es el último sustantivo, todo lo que lo modifica desde antes es **adjetivo**, y los artículos, posesivos y determinantes son **palabras estructurales**.
+
+**Cómo traducir una frase nominal larga:**
+
+1. Traducí primero el **núcleo**.
+2. Seguí con los modificadores **de derecha a izquierda**.
+3. Los sustantivos que funcionan como adjetivo se traducen con "**de** + sustantivo" (*file permissions* → permisos **de archivo**).
+4. Los adjetivos comunes van después del sustantivo en español (*explicit permissions* → permisos **explícitos**).
+5. Los ordinales y los numerales van antes (*first level* → **primer** nivel).
+
+En las tablas, la frase nominal está en **negrita** dentro de su oración.
+
+### 4.1 Frases con dos modificadores
+
+| # | Oración del manual | Núcleo | Modificadores (función adjetiva) | Estructurales | Traducción |
+| --- | --- | --- | --- | --- | --- |
+| 1 | **The main editor window.** | window | main, editor | The (artículo) | **La ventana principal del editor.** |
+| 2 | There is **basic clipboard support**. | support | basic, clipboard | — | Hay **soporte básico para el portapapeles**. |
+| 3 | Use **an alternate configuration directory**. | directory | alternate, configuration | an (artículo) | Usar **un directorio de configuración alternativo**. |
+| 4 | **The project menu items** are detailed below. | items | project, menu | The (artículo) | **Los elementos del menú del proyecto** se detallan más abajo. |
+| 5 | The width of **a single indent size** in spaces. | size | single, indent | a (artículo) | El ancho de **una sola unidad de sangría**, en espacios. |
+| 6 | Leave blank to not set **an additional lookup path**. | path | additional, lookup | an (artículo) | Dejar vacío para no configurar **una ruta de búsqueda adicional**. |
+| 7 | On Windows, **no explicit file permissions** are set. | permissions | explicit, file | no (determinante) | En Windows no se configuran **permisos de archivo explícitos**. |
+| 8 | Let **the GTK GUI toolkit** handle your print request. | toolkit | GTK, GUI | the (artículo) | Dejá que **el toolkit de interfaz gráfica GTK** se encargue de tu pedido de impresión. |
+
+En la oración 8 hay una segunda frase nominal: *your **print** request* (núcleo *request*; *print* es adjetivo; *your* es posesivo) → "tu pedido **de impresión**".
+
+### 4.2 Frases con tres modificadores
+
+| # | Oración del manual | Núcleo | Modificadores (función adjetiva) | Estructurales | Traducción |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Geany provides **basic code folding support**. | support | basic, code, folding | — | Geany ofrece **soporte básico para el plegado de código**. |
+| 2 | Show **the build menu commands dialog**. | dialog | build, menu, commands | the (artículo) | Mostrar **el diálogo de comandos del menú de compilación**. |
+| 3 | Each filetype has **a corresponding filetype definition file**. | file | corresponding, filetype, definition | a (artículo) | Cada tipo de archivo tiene **un archivo de definición de tipo de archivo correspondiente**. |
+| 4 | All missing settings will be read from **the corresponding system configuration file**. | file | corresponding, system, configuration | the (artículo) | Todas las opciones que falten se van a leer **del archivo de configuración del sistema correspondiente**. |
+| 5 | You can easily write **your own global tags files** using this format. | files | own, global, tags | your (posesivo) | Podés escribir fácilmente **tus propios archivos de etiquetas globales** usando este formato. |
+| 6 | If undefined, Geany will fall back to **its default error message parsing**. | parsing | default, error, message | its (posesivo) | Si no está definido, Geany vuelve a **su análisis predeterminado de mensajes de error**. |
+| 7 | When you do this the command from **the next lower priority source** will be shown. | source | next, lower, priority | the (artículo) | Cuando hacés esto, se muestra el comando de **la siguiente fuente de menor prioridad**. |
+| 8 | In either case, you can easily set **the final project file path** in the New Project dialog. | path | final, project, file | the (artículo) | En cualquiera de los dos casos, podés configurar fácilmente **la ruta final del archivo de proyecto** en el diálogo New Project. |
+| 9 | Use this option if you do not want to load **the virtual terminal emulator widget** at startup. | widget | virtual, terminal, emulator | the (artículo) | Usá esta opción si no querés cargar **el widget del emulador de terminal virtual** al iniciar. |
+| 10 | Geany also provides **an alternative basic printing support** using a custom print command. | support | alternative, basic, printing | an (artículo) | Geany también ofrece **un soporte de impresión básico alternativo** usando un comando de impresión personalizado. |
+| 11 | Geany uses **its own tags file format**, similar to what ctags uses (but is incompatible with ctags). | format | own, tags, file | its (posesivo) | Geany usa **su propio formato de archivo de etiquetas**, parecido al que usa ctags (pero incompatible con ctags). |
+| 12 | All documents with the same path are grouped together under **the same first level item**. | item | same, first, level | the (artículo) | Todos los documentos con la misma ruta se agrupan bajo **el mismo elemento de primer nivel**. |
+
+> **Fijate:**
+>
+> - En 4.2.2 y 4.2.5, ***commands*** y ***tags*** están en plural y funcionan igual como **adjetivo**: lo que importa es la posición, no la forma.
+> - En 4.2.6 el núcleo es ***parsing***, una forma -ing que funciona como **sustantivo** porque es la última palabra de la frase.
+> - En 4.2.1 y 4.2.10, ***folding*** y ***printing*** son formas -ing delante del núcleo: funcionan como **adjetivo**.
+
+### 4.3 Frases con cuatro modificadores o más
+
+| # | Oración del manual | Núcleo | Modificadores (función adjetiva) | Estructurales | Traducción |
+| --- | --- | --- | --- | --- | --- |
+| 1 | What **the default symbol list sort order** should be. | order | default, symbol, list, sort | the (artículo) | Cuál debería ser **el orden de clasificación predeterminado de la lista de símbolos**. |
+| 2 | **The created backup copy file permissions** are set to read-write only for the user. | permissions | created, backup, copy, file | The (artículo) | **Los permisos del archivo de copia de seguridad creado** se configuran como lectura y escritura solo para el usuario. |
+| 3 | Each document is parsed for symbols whenever a file is loaded, saved or modified (see **Symbol list update frequency preference** in the Editor Completions preferences ). | preference | Symbol, list, update, frequency | — | Cada documento se analiza en busca de símbolos cada vez que un archivo se carga, se guarda o se modifica (ver **la preferencia de frecuencia de actualización de la lista de símbolos** en las preferencias Editor Completions). |
+
+**Ejemplo resuelto paso a paso:** *the default symbol list sort order*
+
+1. **Fin de la frase:** después de *order* viene *should* (modal), así que la frase termina en *order*.
+2. **Núcleo:** *order* (orden).
+3. **Modificadores:** *default*, *symbol*, *list* y *sort* son 4 adjetivos. En el diccionario, *symbol*, *list* y *sort* son sustantivos; *default* también puede serlo.
+4. **Estructurales:** *the* (artículo definido).
+5. **Traducción de derecha a izquierda:** *order* (orden) ← *sort* (de clasificación) ← *default* (predeterminado) ← *symbol list* (de la lista de símbolos) = **el orden de clasificación predeterminado de la lista de símbolos**.
+
+Si la pregunta es "¿cuántos sustantivos hay en la oración?", la respuesta es **1** (*order*). La oración *What the default symbol list sort order should be.* tiene 4 adjetivos, 1 sustantivo, 1 pronombre (*What*), 1 artículo, 1 modal (*should*) y 1 verbo (*be*). El script clasifica este *be* como auxiliar; ver la nota ⚠️ debajo de 4.5.
+
+### 4.4 Frases con posesivo 's y frases coordinadas
+
+| # | Oración del manual | Análisis | Traducción |
+| --- | --- | --- | --- |
+| 1 | For compilable languages such as C and C++, the Build command will link **the current source file's equivalent object file** into an executable. | Son **dos** frases nominales. En *the current source **file's***, el núcleo es *file's* (**sustantivo**, porque el posesivo 's no lo convierte en adjetivo) y los modificadores son *current* y *source*. En ***equivalent object file***, el núcleo es *file* y los modificadores son *equivalent* y *object*. | Para lenguajes compilables como C y C++, el comando Build enlaza **el archivo objeto equivalente del archivo fuente actual** en un ejecutable. |
+| 2 | The File > Open command will show a dialog to choose **one or more text files** to open. | Núcleo: *files*. Modificadores: *one*, *more* (unidos por *or*) y *text*. *or* es conjunción. | El comando File > Open muestra un diálogo para elegir **uno o más archivos de texto** para abrir. |
+| 3 | Stringification, **token pasting** and **recursive macro expansion** are also supported. | Son **dos** frases unidas por *and*. En *token pasting*, el núcleo es *pasting* (-ing como sustantivo) y *token* es adjetivo. En *recursive macro expansion*, el núcleo es *expansion* y los modificadores son *recursive* y *macro*. | También se admiten la stringification, **el pegado de tokens** y **la expansión recursiva de macros**. |
+| 4 | **The plugins subfolder** of **the user configuration directory** - see Configuration file paths . | Son **dos** frases unidas por *of*. En la primera, el núcleo es *subfolder* y *plugins* es adjetivo (en plural). En la segunda, el núcleo es *directory* y los modificadores son *user* y *configuration*. | **El subdirectorio de plugins** **del directorio de configuración del usuario**; ver Configuration file paths. |
+
+> **Para contar sustantivos en una oración con posesivo:** en la frase 4.4.1, *file's* y *file* son **2 sustantivos**, y *current*, *source*, *equivalent* y *object* son **4 adjetivos**.
+
+### 4.5 Casos difíciles
+
+| # | Oración del manual | Respuesta correcta | Qué dice `analizar.py` | Traducción |
+| --- | --- | --- | --- | --- |
+| 1 | You can load **a custom global tags file** in two ways: | Núcleo: *file*. Modificadores: ***custom***, *global* y *tags* (3 adjetivos). | Marca *custom* como **sustantivo** (error de spaCy). En *a **custom** print command* sí lo marca como adjetivo. | Podés cargar **un archivo de etiquetas global personalizado** de dos maneras: |
+| 2 | **Middle-click** pastes **the last selected text**. | *Middle-click* es un sustantivo compuesto y funciona como sujeto. ***pastes*** es el **verbo** ("pega"). En *the last selected text*, el núcleo es *text* y los modificadores son *last* y *selected*. | Toma *Middle click pastes* como una frase nominal con núcleo *pastes*: se equivoca con el verbo. | **El clic del medio** pega **el último texto seleccionado**. |
+| 3 | This file defines **some general non-filetype-specific settings**. ⚠️ | Núcleo: *settings*. Modificadores: *general* y ***non-filetype-specific***, que es un solo adjetivo compuesto (prefijo *non-* + *filetype* + *-specific*). | Separa el compuesto y cuenta 4 adjetivos: *general*, *non*, *filetype* y *specific*. | Este archivo define **algunas opciones generales que no son específicas de un tipo de archivo**. |
+| 4 | Whether to replace special keywords after typing Tab into **a pre-defined text snippet**. ⚠️ | Núcleo: *snippet*. Modificadores: ***pre-defined*** (prefijo *pre-* + participio *defined*) y *text*. | Separa *pre* y *defined* y cuenta 3 adjetivos. | Si se reemplazan palabras clave especiales al escribir Tab dentro de **un fragmento de texto predefinido**. |
+| 5 | **The Use escape sequences option** will transform any escaped characters into their UTF-8 equivalent. ⚠️ | Núcleo: *option*. *Use escape sequences* es el **nombre** de la opción (una etiqueta del programa) y, en bloque, funciona como adjetivo. | Marca *Use*, *escape* y *sequences* como 3 adjetivos. | **La opción Use escape sequences** transforma cualquier carácter escapado en su equivalente UTF-8. |
+
+⚠️ **Palabras con guion (4.5.3 y 4.5.4):** no está claro si la cátedra cuenta *non-filetype-specific* o *pre-defined* como **una** palabra o como varias. Si en el examen aparece una frase así, conviene preguntar. En esta guía las tratamos como **una sola palabra** (adjetivo compuesto), y los prefijos *non-* y *pre-* se estudian en la sección 6.
+
+⚠️ **Nombres de opciones y menús (4.5.5):** en frases como *the **Use escape sequences** option* o *the **Enable plugin support** general preference*, el nombre de la opción incluye un verbo en imperativo (*Use*, *Enable*). Por su posición, todo el nombre funciona como modificador del núcleo. Falta confirmar con la cátedra cómo cuentan cada palabra por separado.
+
+⚠️ **Oración de 4.3.1:** en *What the default symbol list sort order **should be**.*, el script marca *be* como **auxiliar**, pero ahí es el verbo principal. Por eso en 4.3 figura como verbo.
