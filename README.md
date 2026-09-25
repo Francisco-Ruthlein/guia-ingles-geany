@@ -41,7 +41,7 @@ Para leer la guía no hace falta instalar nada. El script es opcional y sirve pa
 Requisitos: Python 3 (el script se probó con Python 3.11).
 
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/Francisco-Ruthlein/guia-ingles-geany
 cd <carpeta-del-repositorio>
 
 python3 -m venv venv
